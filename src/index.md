@@ -1,5 +1,7 @@
 ---
 layout: home
+title: CodeSpaceX
+titleTemplate: EHR&FHIR
 
 hero:
   name: CodeSpaceX
@@ -11,7 +13,7 @@ hero:
   actions:
     - theme: brand
       text: quickly start
-      link: /docs/guide/soda_guidelines
+      link: /docs/ehr/soda/soda_guidelines
     - theme: alt
       text: Check on github
       link: https://github.com/LinkunGao/codespacex_blog
@@ -19,7 +21,7 @@ features:
   - icon: ⚡️
     title: EHR
     details: Learn details on EHR & FHIR & OMOP
-    link: /docs/guide/soda_guidelines
+    link: /docs/ehr/soda/soda_guidelines
     linkText: Let's go
   - icon: 🖖
     title:

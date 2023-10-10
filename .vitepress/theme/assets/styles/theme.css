@@ -4,22 +4,21 @@ html {
 
 body {
   overflow-y: auto;
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC',
-    'Hiragino Sans GB', 'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial,
-    sans-serif !important;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "\5fae\8f6f\96c5\9ed1", Arial, sans-serif !important;
   font-size: 14px;
   color: var(--vp-c-text-1);
 }
 
-h1[tabindex='-1'] {
+h1[tabindex="-1"] {
   font-size: 30px !important;
 }
 
-h3[tabindex='-1'] {
+h3[tabindex="-1"] {
   margin-top: 28px !important;
 }
 
-h2[tabindex='-1'] {
+h2[tabindex="-1"] {
   margin-top: 38px !important;
 }
 
@@ -48,6 +47,19 @@ h2[tabindex='-1'] {
 /* home hero logo bg */
 .VPHero .container .image .image-container .image-bg {
   background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  filter: var(--vp-home-hero-image-filter);
+}
+.dark .VPHero .container .image .image-container .image-bg {
+  /* background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); */
+  background-image: linear-gradient(
+    to right,
+    #ff8177 0%,
+    #ff867a 0%,
+    #ff8c7f 21%,
+    #f99185 52%,
+    #cf556c 78%,
+    #b12a5b 100%
+  ) !important;
   filter: var(--vp-home-hero-image-filter);
 }
 
@@ -85,6 +97,7 @@ span {
     #b49fda 79%,
     #7ac5d8 100%
   ) !important;
+
   background-repeat: no-repeat !important;
   background-position: bottom left !important;
   background-size: 0 1px !important;

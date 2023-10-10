@@ -35,7 +35,7 @@ export default {
     },
     footer: {
       message: `CodeSpaceX Blog, Welcome <a target="_blank" style="color: var(--vp-c-brand)" href="${github}">star ⭐</a> let's get more people to discover!`,
-      copyright: `<a target="_blank" href="${github}/blob/main/LICENSE">MIT License DoubleXm </a> | COPYRIGHT © 2023-${new Date().getFullYear()}`,
+      copyright: `<a target="_blank" href="${github}/blob/main/LICENSE">Apache-2.0 License CodeSpaceX </a> | COPYRIGHT © 2023-${new Date().getFullYear()}`,
     },
     socialLinks: createSocialLinks(),
     algolia: createAlgolia(),
@@ -121,7 +121,7 @@ function createNav() {
     },
     {
       text: "🔧 Coding tools",
-      link: "/docs/code-tools/vscode",
+      link: "/docs/code-tools/nav",
       activeMatch: "/docs/code-tools/",
     },
   ];
@@ -316,10 +316,10 @@ function createMySQLSidebar() {
  */
 function createCodeToolsSidebar() {
   return [
-    {
-      text: "VSCode 配置",
-      link: "/docs/code-tools/vscode",
-    },
+    // {
+    //   text: "VSCode 配置",
+    //   link: "/docs/code-tools/vscode",
+    // },
     {
       text: "资源导航",
       link: "/docs/code-tools/nav",
