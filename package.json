@@ -6,11 +6,15 @@
   "author": "LinkunGao <gaolinkun123@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:serve": "vitepress serve"
   },
   "devDependencies": {
+    "@types/node": "^20.8.3",
+    "medium-zoom": "^1.0.8",
+    "sass": "^1.69.0",
+    "terser": "^5.21.0",
     "vitepress": "^1.0.0-rc.20",
     "vue": "^3.3.4"
   }
