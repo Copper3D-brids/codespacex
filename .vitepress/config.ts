@@ -28,7 +28,7 @@ export default {
   themeConfig: {
     outline: "deep",
     docFooter: { prev: "Prev", next: "Next" },
-    lastUpdatedText: "Latest update time",
+    lastUpdatedText: "Last update time",
     editLink: {
       pattern: `${github}/blob/main/docs/:path`,
       text: "Edit this page on GitHub",

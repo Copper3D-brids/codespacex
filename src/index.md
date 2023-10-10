@@ -14,7 +14,7 @@ hero:
       link: /docs/guide/soda_guidelines
     - theme: alt
       text: Check on github
-      link: https://github.com/vuejs/vitepress
+      link: https://github.com/LinkunGao/codespacex_blog
 features:
   - icon: ⚡️
     title: EHR
