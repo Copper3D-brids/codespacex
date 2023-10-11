@@ -45,7 +45,7 @@ defineProps<{
   }
   &::after,
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     z-index: -1;
     width: 30px;

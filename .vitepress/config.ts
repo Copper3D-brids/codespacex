@@ -21,7 +21,7 @@ export default {
   cleanUrls: true,
   title: "CodeSpaceX",
   description: "A knowledge base for EHR & CI/CD",
-  lang: "zh-CN",
+  // lang: "zh-CN",
   markdown: {
     lineNumbers: true,
   },
@@ -35,7 +35,7 @@ export default {
     },
     footer: {
       message: `CodeSpaceX Blog, Welcome <a target="_blank" style="color: var(--vp-c-brand)" href="${github}">star ⭐</a> let's get more people to discover!`,
-      copyright: `<a target="_blank" href="${github}/blob/main/LICENSE">MIT License DoubleXm </a> | COPYRIGHT © 2023-${new Date().getFullYear()}`,
+      copyright: `<a target="_blank" href="${github}/blob/main/LICENSE">Apache-2.0 License CodeSpaceX </a> | COPYRIGHT © 2023-${new Date().getFullYear()}`,
     },
     socialLinks: createSocialLinks(),
     algolia: createAlgolia(),
@@ -43,7 +43,7 @@ export default {
     nav: createNav(),
     sidebar: {
       // 专栏
-      "/docs/special-column/vue/": createSpecialColumnSidebar(),
+      "/docs/ehr": createEHRColumnSidebar(),
       // Py
       "/docs/py/basic/": createPySidebar(),
       // MySQL
@@ -104,24 +104,24 @@ function createNav() {
         },
       ],
     },
-    {
-      text: "📜 Note",
-      items: [
-        {
-          text: "🐍 Python",
-          link: "/docs/py/basic/数据类型-运算符",
-          activeMatch: "/docs/py/basic/数据类型-运算符",
-        },
-        {
-          text: "🐬 MySQL",
-          link: "/docs/mysql/basic/index",
-          activeMatch: "/docs/mysql/basic/index",
-        },
-      ],
-    },
+    // {
+    //   text: "📜 Note",
+    //   items: [
+    //     {
+    //       text: "🐍 Python",
+    //       link: "/docs/py/basic/数据类型-运算符",
+    //       activeMatch: "/docs/py/basic/数据类型-运算符",
+    //     },
+    //     {
+    //       text: "🐬 MySQL",
+    //       link: "/docs/mysql/basic/index",
+    //       activeMatch: "/docs/mysql/basic/index",
+    //     },
+    //   ],
+    // },
     {
       text: "🔧 Coding tools",
-      link: "/docs/code-tools/vscode",
+      link: "/docs/code-tools/nav",
       activeMatch: "/docs/code-tools/",
     },
   ];
@@ -158,77 +158,47 @@ function createInterviewSidebar() {
 /**
  * @description 专栏 sidebar
  */
-function createSpecialColumnSidebar() {
+function createEHRColumnSidebar() {
   return [
     {
-      text: "手写 Vue3",
+      text: "EHR",
       collapsed: false,
       items: [
-        { text: "📚 导读", link: "/docs/special-column/vue/00-导读" },
+        { text: "📚 Roadmap", link: "/docs/ehr/roadmap" },
         {
-          text: "🌱 源码环境搭建",
-          link: "/docs/special-column/vue/01-源码环境搭建",
+          text: "🌱 Architecture",
+          link: "/docs/ehr/server/architecture",
         },
         {
-          text: "reactivity 响应式模块",
+          text: "FHIR",
           // collapsed: false,
           items: [
             {
-              text: "reactiveApi 实现",
-              link: "/docs/special-column/vue/02-reactiveApi实现",
+              text: "FHIR Resources for EHR (MRI)",
+              link: "/docs/ehr/fhir/01-fhir-resources",
             },
             {
-              text: "依赖收集与更新 effect 的实现",
-              link: "/docs/special-column/vue/03-依赖收集与更新",
+              text: "Hapi FHIR",
+              link: "/docs/ehr/fhir/02-hapi-fhir",
             },
             {
-              text: "refApi 实现",
-              link: "/docs/special-column/vue/04-refApi实现",
+              text: "OMOP on FHIR",
+              link: "/docs/ehr/fhir/03-fhir-omop",
             },
             {
-              text: "computed 实现",
-              link: "/docs/special-column/vue/05-computedApi",
+              text: "REDCap on FHIR",
+              link: "/docs/ehr/fhir/04-fhir-redcap",
             },
           ],
         },
         {
-          text: "初始化渲染流程",
-          link: "/docs/special-column/vue/06-初始化前置",
+          text: "SODA",
+          link: "/docs/ehr/soda/soda_guidelines",
           // collapsed: false,
           items: [
             {
-              text: "准备工作",
-              link: "/docs/special-column/vue/06-初始化前置",
-            },
-            {
-              text: "createApp",
-              link: "/docs/special-column/vue/07-初始化流程",
-            },
-            {
-              text: "Vue 中的类型及 createVNode",
-              link: "/docs/special-column/vue/08-Vue类型",
-            },
-            {
-              text: "组件创建流程",
-              link: "/docs/special-column/vue/09-render",
-            },
-            {
-              text: "h 方法及元素挂载流程",
-              link: "/docs/special-column/vue/10-挂载",
-            },
-          ],
-        },
-        {
-          text: "组件、元素更新 diff算法",
-          // collapsed: false,
-          items: [
-            {
-              text: "更新流程开始及回顾",
-              link: "/docs/special-column/vue/11-组件更新开始于回顾",
-            },
-            {
-              text: "组件更新流程",
-              link: "/docs/special-column/vue/12-组件更新",
+              text: "Guidelines",
+              link: "/docs/ehr/soda/soda_guidelines",
             },
           ],
         },
@@ -316,10 +286,10 @@ function createMySQLSidebar() {
  */
 function createCodeToolsSidebar() {
   return [
-    {
-      text: "VSCode 配置",
-      link: "/docs/code-tools/vscode",
-    },
+    // {
+    //   text: "VSCode 配置",
+    //   link: "/docs/code-tools/vscode",
+    // },
     {
       text: "资源导航",
       link: "/docs/code-tools/nav",
