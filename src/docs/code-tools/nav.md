@@ -2,19 +2,37 @@
 import Card from '../../../.vitepress/theme/components/Card.vue';
 </script>
 
-### 网站工具
+### Web Tools
 
 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 <Card 
   title="Carbon"
-  desc="快速帮助你生成代码判断截图" 
+  desc="Quickly help you generate code judgement screenshots." 
   href="https://carbon.now.sh/" 
 />
 
 <Card 
   title="Excalidraw" 
-  desc="一款开源的虚拟手绘风格白板。" 
+  desc="An open source virtual hand-drawn style whiteboard." 
   href="https://excalidraw.com/" 
+/>
+
+<Card 
+  title="Miro"
+  desc="A Free WhiteBoard for kanban, mind map, .etc"
+  href="https://miro.com/app"
+/>
+
+<Card 
+  title="Rawpixel"
+  desc="A Free AI Generate Image Website"
+  href="https://www.rawpixel.com/image/12373512/png-background-person"
+/>
+
+<Card 
+  title="Draw.io"
+  desc="A Free Diagram online tools, allow save files in Google drive and GitHub"
+  href="https://app.diagrams.net/#G1voInd2Kxwf2Tn9MU8xky5Kpu_ysRJvjt"
 />
 
 </div>
@@ -186,7 +204,7 @@ import Card from '../../../.vitepress/theme/components/Card.vue';
 
 <Card 
   title="合成神龙"
-  desc="网页版大雨吃小鱼。" 
+  desc="网页版大鱼吃小鱼。" 
   href="https://www.mutegame.com/170/" 
 />
 

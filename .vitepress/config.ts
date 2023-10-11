@@ -94,20 +94,20 @@ function createNav() {
           items: [
             {
               text: "🌋 FHIR",
-              link: "/docs/special-column/vue/00-导读",
-              activeMatch: "/docs/special-column/vue/",
+              link: "/docs/ehr/fhir/01-fhir-resources",
+              activeMatch: "/docs/ehr",
             },
           ],
         },
         {
-          text: "🤔 SODA",
-          link: "/docs/special-column/vue/00-导读",
-          activeMatch: "/docs/special-column/vue/",
+          text: "🤖 OMOP",
+          link: "/docs/ehr/fhir/03-fhir-omop",
+          activeMatch: "/docs/ehr",
         },
         {
-          text: "🤖 OMOP",
-          link: "/docs/special-column/vue/00-导读",
-          activeMatch: "/docs/special-column/vue/",
+          text: "🤔 SODA",
+          link: "/docs/ehr/soda/soda_guidelines",
+          activeMatch: "/docs/ehr",
         },
       ],
     },
@@ -298,7 +298,7 @@ function createCodeToolsSidebar() {
     //   link: "/docs/code-tools/vscode",
     // },
     {
-      text: "资源导航",
+      text: "Resources",
       link: "/docs/code-tools/nav",
     },
   ];

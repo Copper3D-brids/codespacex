@@ -28,6 +28,7 @@ defineProps<{
   background-color: #fff;
   border: 1px solid var(--vp-c-brand);
   .title {
+    font-family: Comic Sans MS;
     font-size: 16px;
     font-weight: 600;
   }
@@ -50,6 +51,46 @@ defineProps<{
     z-index: -1;
     width: 30px;
     height: 30px;
+    background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+  }
+  &:hover {
+    border-radius: 10px;
+    // transform: translateY(-10px);
+    transition: all ease-in-out 0.3s;
+    &::before,
+    &::after {
+      width: calc(100% + 8px);
+      height: calc(100% + 8px);
+      border-radius: 10px;
+      transition: all ease-in-out 0.3s;
+    }
+  }
+}
+// ._codespacex_blog_docs_code-tools_nav h3 {
+
+.dark .card-container {
+  background-color: #1c1c1c;
+
+  .desc {
+    color: rgb(119, 128, 143);
+  }
+  cursor: pointer;
+  &::before {
+    top: -4px;
+    left: -4px;
+  }
+  &::after {
+    bottom: -4px;
+    right: -4px;
+  }
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 30px;
+    height: 30px;
+
     background-image: linear-gradient(
       to right,
       #eea2a2 0%,
