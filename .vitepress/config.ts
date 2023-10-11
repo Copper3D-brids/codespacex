@@ -37,7 +37,7 @@ export default {
     docFooter: { prev: "Prev", next: "Next" },
     lastUpdatedText: "Last update time",
     editLink: {
-      pattern: `${github}/blob/main/docs/:path`,
+      pattern: `${github}/blob/main/src/:path`,
       text: "Edit this page on GitHub",
     },
     footer: {
@@ -49,7 +49,7 @@ export default {
 
     nav: createNav(),
     sidebar: {
-      // 专栏
+      // EHR
       "/docs/ehr": createEHRColumnSidebar(),
       // Py
       "/docs/py/basic/": createPySidebar(),
@@ -65,6 +65,7 @@ export default {
   },
   vite: {
     server: {
+      host: "0.0.0.0",
       port: 5872,
     },
     build: {

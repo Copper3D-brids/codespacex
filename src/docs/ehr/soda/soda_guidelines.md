@@ -19,8 +19,8 @@
   - Code-related metadata files: `code_description`, `code_parameters`
 - Guide structure, rules and examples for metadata files can be found in:
   - [`dataset_description`](https://docs.sodaforsparc.io/docs/how-to/how-to-structure-the-dataset-description-metadata-file).
-  - [`subjects`](https://docs.sodaforsparc.io/docs/how-to/how-to-structure-the-subjects-metadata-file)
-  - [`smaples`](https://docs.sodaforsparc.io/docs/how-to/how-to-structure-the-samples-metadata-file)
+  - [`subjects`](https://docs.sodaforsparc.io/docs/how-to/how-to-structure-the-subjects-metadata-file).
+  - [`smaples`](https://docs.sodaforsparc.io/docs/how-to/how-to-structure-the-samples-metadata-file).
   - [`manifest`](https://docs.sodaforsparc.io/docs/how-to/how-to-structure-the-manifest-metadata-file).
   - [`submission`](https://docs.sodaforsparc.io/docs/how-to/how-to-structure-the-submission-metadata-file).
 - Informations for each category folder data
