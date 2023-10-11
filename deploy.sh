@@ -17,8 +17,6 @@ cd dist
 git init
 git add -A
 git commit -m 'deploy'
-git config --global user.email "gaolinkun123@gmail.com"
-git config --global user.name "LinkunGao"
 git branch
 
 # 如果发布到 https://<USERNAME>.github.io
