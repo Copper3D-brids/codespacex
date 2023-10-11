@@ -49,7 +49,7 @@ export default {
 
     nav: createNav(),
     sidebar: {
-      // 专栏
+      // EHR
       "/docs/ehr": createEHRColumnSidebar(),
       // Py
       "/docs/py/basic/": createPySidebar(),
