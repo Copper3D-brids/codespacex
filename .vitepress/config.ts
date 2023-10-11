@@ -37,7 +37,7 @@ export default {
     docFooter: { prev: "Prev", next: "Next" },
     lastUpdatedText: "Last update time",
     editLink: {
-      pattern: `${github}/blob/main/docs/:path`,
+      pattern: `${github}/blob/main/src/:path`,
       text: "Edit this page on GitHub",
     },
     footer: {
