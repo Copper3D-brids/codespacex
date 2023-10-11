@@ -6,7 +6,14 @@ export default {
   cacheDir: "src/cache",
   outDir: "dist",
   head: [
-    ["link", { rel: "icon", type: "image/x-icon", href: "/logo_header.svg" }],
+    [
+      "link",
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/codespacex_blog/logo_header.svg",
+      },
+    ],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
     [
       "meta",
