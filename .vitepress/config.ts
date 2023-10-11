@@ -94,6 +94,11 @@ function createNav() {
         {
           items: [
             {
+              text: "🕌 Architecture",
+              link: "/docs/ehr/server/architecture",
+              activeMatch: "/docs/ehr",
+            },
+            {
               text: "🌋 FHIR",
               link: "/docs/ehr/fhir/01-fhir-resources",
               activeMatch: "/docs/ehr",
