@@ -50,18 +50,25 @@ h2[tabindex="-1"] {
   filter: var(--vp-home-hero-image-filter);
 }
 .dark .VPHero .container .image .image-container .image-bg {
-  /* background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); */
   background-image: linear-gradient(
-    to right,
-    #ff8177 0%,
-    #ff867a 0%,
-    #ff8c7f 21%,
-    #f99185 52%,
-    #cf556c 78%,
-    #b12a5b 100%
+    to top,
+    #7ac5d8 0%,
+    #b49fda 19%,
+    #57c6e1 42%,
+    #bbc1bf 79%,
+    #eea2a2 100%
   ) !important;
   filter: var(--vp-home-hero-image-filter);
 }
+
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--vp-c-text-1) !important;
+} */
 
 h1,
 h2,
@@ -69,7 +76,35 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--vp-c-text-1) !important;
+  font-family: Comic Sans MS;
+  background-image: linear-gradient(
+    to top,
+    #7ac5d8 0%,
+    #b49fda 19%,
+    #57c6e1 42%,
+    #bbc1bf 79%,
+    #eea2a2 100%
+  ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  background-image: linear-gradient(
+    to right,
+    #eea2a2 0%,
+    #bbc1bf 19%,
+    #57c6e1 42%,
+    #b49fda 79%,
+    #7ac5d8 100%
+  ) !important;
 }
 
 .medium-zoom-overlay,

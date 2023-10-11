@@ -15,12 +15,12 @@ hero:
       text: quickly start
       link: /docs/ehr/index
     - theme: alt
-      text: Check on github
-      link: https://github.com/LinkunGao/codespacex_blog
+      text: Copper3d API
+      link: https://linkungao.github.io/copper3d_visualisation/
 features:
   - icon: ⚡️
     title: EHR
-    details: Learn details on EHR & FHIR & OMOP
+    details: More details on EHR & FHIR & OMOP
     link: /docs/ehr/index
     linkText: Let's go
   - icon: 🖖
