@@ -13,7 +13,7 @@ hero:
   actions:
     - theme: brand
       text: quickly start
-      link: /docs/ehr/soda/soda_guidelines
+      link: /docs/ehr/index
     - theme: alt
       text: Check on github
       link: https://github.com/LinkunGao/codespacex_blog
@@ -21,7 +21,7 @@ features:
   - icon: ⚡️
     title: EHR
     details: Learn details on EHR & FHIR & OMOP
-    link: /docs/ehr/soda/soda_guidelines
+    link: /docs/ehr/index
     linkText: Let's go
   - icon: 🖖
     title:
