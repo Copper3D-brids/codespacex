@@ -27,10 +27,10 @@ export function createSocialLinks(): SocialLink[] {
 
 export function createAlgolia() {
   return {
-    apiKey: "b537815b63bd12a83511061a06d783b9",
-    indexName: "doublexmio",
+    apiKey: "",
+    indexName: "codespacex",
     // 如果 Algolia 没有为你提供 `appId` ，使用 `BH4D9OD16A` 或者移除该配置项
-    appId: "R4FQPVX6VL",
+    appId: "BH4D9OD16A",
     placeholder: "Keywords for search docs",
     translations: {
       button: {
