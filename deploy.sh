@@ -17,11 +17,14 @@ cd dist
 git init
 git add -A
 git commit -m 'deploy'
+git config --global user.email "gaolinkun123@gmail.com"
+git config --global user.name "LinkunGao"
+git branch
 
 # 如果发布到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
-git push -f https://github.com/LinkunGao/codespacex_blog.git main:gh-pages
+git push -f https://github.com/LinkunGao/codespacex_blog.git master:gh-pages
 
 cd -
