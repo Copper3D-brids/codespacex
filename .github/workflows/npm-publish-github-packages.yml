@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - run: npm install pnpm
+      - run: npm install pnpm -g
       - run: pnpm install
       - run: pnpm run deploy
         env:
