@@ -65,6 +65,7 @@ export default {
   },
   vite: {
     server: {
+      host: "0.0.0.0",
       port: 5872,
     },
     build: {
