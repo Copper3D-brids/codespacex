@@ -85,8 +85,8 @@ function createNav() {
   return [
     {
       text: "📝 Inspirations",
-      link: "/docs/essay/index",
-      activeMatch: "/docs/essay/",
+      link: "/docs/inspirations/git",
+      activeMatch: "/docs/inspirations/",
     },
     {
       text: "🔥 EHR",
