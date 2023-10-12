@@ -41,6 +41,12 @@ import Card from '../../../.vitepress/theme/components/Card.vue';
   href="https://asciiflow.com/#/"
 />
 
+<Card 
+  title="Algolia DocSearch"
+  desc="Add your website to Algolia."
+  href="https://docsearch.algolia.com/"
+/>
+
 </div>
 
 ### CSS 相关
