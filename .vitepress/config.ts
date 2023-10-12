@@ -90,6 +90,8 @@ function createNav() {
     },
     {
       text: "🔥 EHR",
+      link: "/docs/ehr/index",
+      activeMatch: "/docs/ehr",
       items: [
         {
           items: [
