@@ -1,7 +1,7 @@
 import { github, createSocialLinks, createAlgolia } from "./setting.js";
 
 export default {
-  base: "/codespacex_blog/",
+  base: "/codespacex/",
   srcDir: "src",
   cacheDir: "src/cache",
   outDir: "dist",
@@ -11,7 +11,7 @@ export default {
       {
         rel: "icon",
         type: "image/x-icon",
-        href: "/codespacex_blog/logo_header.svg",
+        href: "/codespacex/logo_header.svg",
       },
     ],
     ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
@@ -180,11 +180,11 @@ function createEHRColumnSidebar() {
         { text: "📚 Roadmap", link: "/docs/ehr/roadmap" },
         {
           text: "🌱 Architecture",
-          items:[
+          items: [
             {
               text: "MVP",
               link: "/docs/ehr/server/mvp",
-            }
+            },
           ],
           link: "/docs/ehr/server/architecture",
         },
