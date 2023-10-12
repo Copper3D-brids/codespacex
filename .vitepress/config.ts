@@ -180,6 +180,12 @@ function createEHRColumnSidebar() {
         { text: "📚 Roadmap", link: "/docs/ehr/roadmap" },
         {
           text: "🌱 Architecture",
+          items:[
+            {
+              text: "MVP",
+              link: "/docs/ehr/server/mvp",
+            }
+          ],
           link: "/docs/ehr/server/architecture",
         },
         {
