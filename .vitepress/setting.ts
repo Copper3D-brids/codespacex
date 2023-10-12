@@ -19,7 +19,7 @@ export type SocialLinkIcon =
 
 // setting --------------------------------------------------------------------
 
-export const github = "https://github.com/LinkunGao/codespacex_blog";
+export const github = "https://github.com/Copper3D-brids/codespacex";
 
 export function createSocialLinks(): SocialLink[] {
   return [{ icon: "github", link: github }];
