@@ -1,10 +1,10 @@
 {
-  "name": "copper_docs",
+  "name": "codespacex",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/LinkunGao/copper_docs.git",
+  "repository": "https://github.com/Copper3D-brids/codespacex.git",
   "author": "LinkunGao <gaolinkun123@gmail.com>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "scripts": {
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
