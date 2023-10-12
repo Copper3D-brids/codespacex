@@ -90,8 +90,6 @@ function createNav() {
     },
     {
       text: "🔥 EHR",
-      link: "/docs/ehr/index",
-      activeMatch: "/docs/ehr",
       items: [
         {
           items: [
@@ -182,6 +180,12 @@ function createEHRColumnSidebar() {
         { text: "📚 Roadmap", link: "/docs/ehr/roadmap" },
         {
           text: "🌱 Architecture",
+          items:[
+            {
+              text: "MVP",
+              link: "/docs/ehr/server/mvp",
+            }
+          ],
           link: "/docs/ehr/server/architecture",
         },
         {
