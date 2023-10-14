@@ -98,12 +98,12 @@ function createNav() {
               link: "/docs/ehr/server/architecture",
               activeMatch: "/docs/ehr",
             },
-            {
-              text: "🌋 FHIR",
-              link: "/docs/ehr/fhir/01-fhir-resources",
-              activeMatch: "/docs/ehr",
-            },
           ],
+        },
+        {
+          text: "🌋 FHIR",
+          link: "/docs/ehr/fhir/01-fhir-resources",
+          activeMatch: "/docs/ehr",
         },
         {
           text: "🤖 OMOP",
@@ -198,7 +198,17 @@ function createEHRColumnSidebar() {
             },
             {
               text: "Hapi FHIR",
-              link: "/docs/ehr/fhir/02-hapi-fhir",
+              link: "/docs/ehr/fhir/hapi_fhir/hapi-fhir",
+              items:[
+                {
+                  text: "T-00 synthea data",
+                  link: "/docs/ehr/fhir/hapi_fhir/tutorials/00-synthea",
+                },
+                {
+                  text: "T-01 initial dataset",
+                  link: "/docs/ehr/fhir/hapi_fhir/tutorials/01-initial-data",
+                },
+              ]
             },
             {
               text: "OMOP on FHIR",
