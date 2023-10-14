@@ -1,7 +1,7 @@
 # HAPI FHIR Tutorial 01 - Data initialzation
 
 These toturials are using fhirpy to connect HAPI FHIR server.
-The HAPI FHIR server is running at local docker container with http://localhost:8080. 
+The HAPI FHIR server is running at local docker container with `http://localhost:8080`. 
 
 - environment
   - hapi-fhir-jpaserver
