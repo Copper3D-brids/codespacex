@@ -61,3 +61,53 @@ This method returns a `lazy object` (an instance of `FHIRSearchSet`), which prov
 - `async .fetch_all()`: makes query to the server and returns a full list of `Resource` filtered by resource type. (not recommand)
 - `async .fetch_raw()`: makse query to the server and returns a raw Boundle `Resource`. 
 - More `FHIRSearchSet` api details visit [fhirpy GitHub](https://github.com/beda-software/fhir-py#asyncfhirsearchset). 
+
+```python
+patients = await client.resources("Patient").fetch()
+print(len(patients))
+```
+We built a simple query without any filters and sortings. Executing this query we load all patient records which are represented as dict-like object (an instance of `FHIRResource`).
+
+As we can see we've already get all patients output above, all patients are in a list. As for each patients, to get more details, we can get some fields using `get()` and `get_by_path()` methods.
+
+`get(field_name)` method receives field name as the first argument.
+`get_by_path(path)` method receives path as string (`name.0.given.0`) or as a list (`['name', 0, 'given', 0]`)
+
+Let's try to iterate over `patients` list and display their ids and full name.
+
+```python
+for patient in patients:
+  print('{0} {1} {2}'.format(
+    patient.get('id'),
+    patient.get_by_path('name.0.family')
+    patient.get_by_path('name.0.given.0')
+  ))
+```
+
+### Sorting results
+
+Also, we can sort the result, for example, by name using `sort` method.
+
+Please, pay attention, that `sort` receives multiple parameters and all possible parameters described in the [official FHIR specification](http://hl7.org/fhir/R4/patient.html#search).
+
+```python
+patients = await client.resources('Patient').sort('name').fetch()
+```
+
+As we can see, the list is very long and it may be too difficult to find the paticular patient especially if we have thousands of entires.
+
+To minimize the result, FHIR API provides special search tools.
+
+### Search through patients' resources
+
+The `Patient` resource has many search parameters. Yopu can read more about them in the [official FHIR specification](http://hl7.org/fhir/R4/patient.html#search).
+
+For searching we should use `search()` method on a search set. If we wnat to find, for example, all patients with the first name `Jhon` and the last name `Thompson` we should use intersection search, passing list of values, for example, `search(name=['John', 'Thompson'])`. This is known as an **AND** search parameter. If we wanted to find all patients with name `John` or `Carl`, we would use `search(name='John,Carl')`. This is known as an **OR** search parameter.
+
+Let's try to search for a patient by a parameter `name`.
+
+This param is used for searching by string fields in the patient's name, including family, given, prefix, suffix, and/or text.
+
+```python
+patients = await client.resources('Patient').search(name=['John', 'Thompson']).fetch_all()
+```
