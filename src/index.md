@@ -23,9 +23,11 @@ features:
     details: More details on EHR & FHIR & OMOP
     link: /docs/ehr/index
     linkText: Let's go
-  - icon: 🖖
-    title:
-    details: function 2 details
+  - icon: 🌋 
+    title: FHIR & Server
+    details: HAPI FHIR Server via synthea data, tutorials
+    link: /docs/ehr/fhir/hapi_fhir/tutorials/00-synthea
+    linkText: Let's go
   - icon: 🛠️
     title: function 3
     details: function 3 details
