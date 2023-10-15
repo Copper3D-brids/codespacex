@@ -25,6 +25,7 @@ def pprint(d):
 ```
 
 ### Create an instance of connection
+- Before this task, the T-01 initial FHIR data should be completed.
 - To load data from FHIR server we should initate `FHIRClient` class from `fhirpy` package.
 - We pass `url` and `authorization` arguments from environment.
 
@@ -34,3 +35,24 @@ client = AsyncFHIRClient(
   authorization='Bearer TOKEN',
 )
 ```
+
+Now, we are able to operate with FHIR resources using `client`.
+
+## Load resources' data from HAPI FHIR server
+### Load list of patients
+
+The `Patient` resource covers data about patients and animals involved in a wide range of health-related activities, including:
+
+- Theurapeutic activities
+- Psychiatric care
+- Social services
+- Pregnancy care
+- Nursing and assisted living
+- Dietary services
+- Tracking of personal health and exercise data
+
+The data in the Resource cover the "who" information about the patient: its attributes are focused on the demographic information necessary to support the administrative, finacial and logistic procedures. A `Patient` record is generally created and maintained by each organization providing care for a patient.
+
+Let's try to fetch all patients in the database using `resources` method.
+
+This method returns a `lazy object` (an instance of `FHIRSearchSet`), which provides some helpful methods for building queries. The most important method which we are going to use is `fetch_all`. Using it, we can execute built queries and load all records suitable for our query.
