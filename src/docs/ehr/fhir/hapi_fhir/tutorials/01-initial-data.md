@@ -5,7 +5,7 @@ The HAPI FHIR server is running at local docker container with `http://localhost
 
 - environment
   - [hapi-fhir-jpaserver](https://github.com/hapifhir/hapi-fhir-jpaserver-starter)
-  - [fhirpy](https://pypi.org/project/fhirpy/)
+  - [fhirpy](https://pypi.org/project/fhirpy/) v1.4.2
   - docker
   - python 3.9+
 - data

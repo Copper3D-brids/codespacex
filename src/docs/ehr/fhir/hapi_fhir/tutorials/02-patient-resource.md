@@ -55,4 +55,9 @@ The data in the Resource cover the "who" information about the patient: its attr
 
 Let's try to fetch all patients in the database using `resources` method.
 
-This method returns a `lazy object` (an instance of `FHIRSearchSet`), which provides some helpful methods for building queries. The most important method which we are going to use is `fetch_all`. Using it, we can execute built queries and load all records suitable for our query.
+This method returns a `lazy object` (an instance of `FHIRSearchSet`), which provides some helpful methods for building queries. The most important method which we are going to use is `fetch()`. Using it, we can execute built queries and load all records suitable for our query. 
+
+- `async .fetch()`: makes query to the server and returns a list of `Resource` filtered by resource type.
+- `async .fetch_all()`: makes query to the server and returns a full list of `Resource` filtered by resource type. (not recommand)
+- `async .fetch_raw()`: makse query to the server and returns a raw Boundle `Resource`. 
+- More `FHIRSearchSet` api details visit [fhirpy GitHub](https://github.com/beda-software/fhir-py#asyncfhirsearchset). 
