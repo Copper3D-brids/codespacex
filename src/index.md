@@ -5,7 +5,7 @@ titleTemplate: EHR&FHIR
 
 hero:
   name: CodeSpaceX
-  text: "EHR & DevOps learning collection"
+  text: "EHR & DevOps Collection"
   tagline:
   image:
     src: /logo.png
