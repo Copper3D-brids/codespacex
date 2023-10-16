@@ -141,7 +141,7 @@ patients = await client.resources('Patient').search(name=['John', 'Thompson']).f
 We found nothing. Maybe his record has a type in the name. Now let's try to search by other parameters, for example, by brith date. The search parameter has name `brithdate` according to the [FHIR specification](http://hl7.org/fhir/R4/patient.html#search)
 
 ```python
-patients = await client.resource('Patient').search(birthdate='1982-08-02').fetch_all()
+patients = await client.resources('Patient').search(birthdate='1982-08-02').fetch_all()
 ```
 
 Also, we can try to find all patients who wre born in `Philadelphia`. For this purpose we should use `address` search param.
@@ -324,7 +324,7 @@ Let's try to delete a non-relational Patient resource (without other resources' 
 **Note:** If the delete method success, it doesn't return anything, but the resource will be deleted from database.
 
 ```py
-patientResourceSearchSet = client.resource('Patient')
+patientResourceSearchSet = client.resources('Patient')
 patients = await patientResourceSearchSet.search(name=['John', 'Thompson']).fetch_all()
 
 for patient in patients:
