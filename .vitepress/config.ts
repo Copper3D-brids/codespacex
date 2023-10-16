@@ -49,6 +49,8 @@ export default {
 
     nav: createNav(),
     sidebar: {
+      // Inspiration
+      "/docs/inspirations": createInspirationsSidebar(),
       // EHR
       "/docs/ehr": createEHRColumnSidebar(),
       // Py
@@ -117,25 +119,32 @@ function createNav() {
         },
       ],
     },
-    // {
-    //   text: "📜 Note",
-    //   items: [
-    //     {
-    //       text: "🐍 Python",
-    //       link: "/docs/py/basic/数据类型-运算符",
-    //       activeMatch: "/docs/py/basic/数据类型-运算符",
-    //     },
-    //     {
-    //       text: "🐬 MySQL",
-    //       link: "/docs/mysql/basic/index",
-    //       activeMatch: "/docs/mysql/basic/index",
-    //     },
-    //   ],
-    // },
     {
       text: "🔧 Coding tools",
       link: "/docs/code-tools/nav",
       activeMatch: "/docs/code-tools/",
+    },
+  ];
+}
+
+
+function createInspirationsSidebar(){
+  return [
+    {
+      text: "",
+      collapsed: false,
+      items: [
+        {
+          text: "Python",
+          link: "/docs/inspirations/python",
+        },
+        {
+          text: "Git",
+          link: "/docs/inspirations/git",
+        },
+        { text: "Javascript", link: "/docs/interview/javascript" },
+        { text: "TypeScript", link: "/docs/interview/typescript" },
+      ],
     },
   ];
 }
@@ -201,12 +210,16 @@ function createEHRColumnSidebar() {
               link: "/docs/ehr/fhir/hapi_fhir/hapi-fhir",
               items:[
                 {
-                  text: "T-00 synthea data",
+                  text: "T-00 Synthea data",
                   link: "/docs/ehr/fhir/hapi_fhir/tutorials/00-synthea",
                 },
                 {
-                  text: "T-01 initial dataset",
+                  text: "T-01 Initial dataset",
                   link: "/docs/ehr/fhir/hapi_fhir/tutorials/01-initial-data",
+                },
+                {
+                  text: "T-02 Patient resource",
+                  link: "/docs/ehr/fhir/hapi_fhir/tutorials/02-patient-resource",
                 },
               ]
             },

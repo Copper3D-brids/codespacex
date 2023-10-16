@@ -1,0 +1,113 @@
+# FHIR Patient Resource
+
+## Background
+ Meet John Thompson. He is a 36 year old (date of birth is 08-02-1982) man from `Philadelphia`. He is thinking of visiting our clinical center because of some health problems. John calls our center and asks if he can visit us.
+
+ Let's check if he has visited our center before.
+
+## Setup environment
+
+### Import libraries
+
+For the beginning we should import libraries `fhirpy` and `os`.
+
+Also We use our customise `pprint` to dhisplay some resource's structures.
+
+```python
+import os
+from fhirpy import AsyncFHIRClient
+
+def pprint(d):
+    from json import dump
+    import sys
+
+    dump(d, sys.stdout, indent=2)
+```
+
+### Create an instance of connection
+- Before this task, the T-01 initial FHIR data should be completed.
+- To load data from FHIR server we should initate `FHIRClient` class from `fhirpy` package.
+- We pass `url` and `authorization` arguments from environment.
+
+```python
+client = AsyncFHIRClient(
+  url='http://localhost:8080/fhir/',
+  authorization='Bearer TOKEN',
+)
+```
+
+Now, we are able to operate with FHIR resources using `client`.
+
+## Load resources' data from HAPI FHIR server
+### Load list of patients
+
+The `Patient` resource covers data about patients and animals involved in a wide range of health-related activities, including:
+
+- Theurapeutic activities
+- Psychiatric care
+- Social services
+- Pregnancy care
+- Nursing and assisted living
+- Dietary services
+- Tracking of personal health and exercise data
+
+The data in the Resource cover the "who" information about the patient: its attributes are focused on the demographic information necessary to support the administrative, finacial and logistic procedures. A `Patient` record is generally created and maintained by each organization providing care for a patient.
+
+Let's try to fetch all patients in the database using `resources` method.
+
+This method returns a `lazy object` (an instance of `FHIRSearchSet`), which provides some helpful methods for building queries. The most important method which we are going to use is `fetch()`. Using it, we can execute built queries and load all records suitable for our query. 
+
+- `async .fetch()`: makes query to the server and returns a list of `Resource` filtered by resource type.
+- `async .fetch_all()`: makes query to the server and returns a full list of `Resource` filtered by resource type. (not recommand)
+- `async .fetch_raw()`: makse query to the server and returns a raw Boundle `Resource`. 
+- More `FHIRSearchSet` api details visit [fhirpy GitHub](https://github.com/beda-software/fhir-py#asyncfhirsearchset). 
+
+```python
+patients = await client.resources("Patient").fetch()
+print(len(patients))
+```
+We built a simple query without any filters and sortings. Executing this query we load all patient records which are represented as dict-like object (an instance of `FHIRResource`).
+
+As we can see we've already get all patients output above, all patients are in a list. As for each patients, to get more details, we can get some fields using `get()` and `get_by_path()` methods.
+
+`get(field_name)` method receives field name as the first argument.
+`get_by_path(path)` method receives path as string (`name.0.given.0`) or as a list (`['name', 0, 'given', 0]`)
+
+Let's try to iterate over `patients` list and display their ids and full name.
+
+```python
+for patient in patients:
+  print('{0} {1} {2}'.format(
+    patient.get('id'),
+    patient.get_by_path('name.0.family')
+    patient.get_by_path('name.0.given.0')
+  ))
+```
+
+### Sorting results
+
+Also, we can sort the result, for example, by name using `sort` method.
+
+Please, pay attention, that `sort` receives multiple parameters and all possible parameters described in the [official FHIR specification](http://hl7.org/fhir/R4/patient.html#search).
+
+```python
+patients = await client.resources('Patient').sort('name').fetch()
+```
+
+As we can see, the list is very long and it may be too difficult to find the paticular patient especially if we have thousands of entires.
+
+To minimize the result, FHIR API provides special search tools.
+
+### Search through patients' resources
+
+The `Patient` resource has many search parameters. Yopu can read more about them in the [official FHIR specification](http://hl7.org/fhir/R4/patient.html#search).
+
+For searching we should use `search()` method on a search set. If we wnat to find, for example, all patients with the first name `Jhon` and the last name `Thompson` we should use intersection search, passing list of values, for example, `search(name=['John', 'Thompson'])`. This is known as an **AND** search parameter. If we wanted to find all patients with name `John` or `Carl`, we would use `search(name='John,Carl')`. This is known as an **OR** search parameter.
+
+Let's try to search for a patient by a parameter `name`.
+
+This param is used for searching by string fields in the patient's name, including family, given, prefix, suffix, and/or text.
+
+```python
+patients = await client.resources('Patient').search(name=['John', 'Thompson']).fetch_all()
+```

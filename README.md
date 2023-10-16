@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-EHR & DevOps learning collection
+EHR & DevOps Collection
 </p>
 
 <p align="center">

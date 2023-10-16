@@ -4,10 +4,10 @@ These toturials are using fhirpy to connect HAPI FHIR server.
 The HAPI FHIR server is running at local docker container with `http://localhost:8080`. 
 
 - environment
-  - hapi-fhir-jpaserver
-  - fhirpy
+  - [hapi-fhir-jpaserver](https://github.com/hapifhir/hapi-fhir-jpaserver-starter)
+  - [fhirpy](https://pypi.org/project/fhirpy/) v1.4.2
   - docker
-  - python 3.9
+  - python 3.9+
 - data
   - synthea_sample_data_fhir_r4
 
@@ -26,7 +26,7 @@ from fhirpy import AsyncFHIRClient
 ```python
 
 client = AsyncFHIRClient(
-  'http://localhost:8080/fhir/',
+  url='http://localhost:8080/fhir/',
   authorization='Bearer TOKEN',
 )
 ```
