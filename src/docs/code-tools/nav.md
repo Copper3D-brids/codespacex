@@ -47,6 +47,13 @@ import Card from '../../../.vitepress/theme/components/Card.vue';
   href="https://docsearch.algolia.com/"
 />
 
+<Card 
+  title="RemoveBg"
+  desc="Remove the white background to, sava as .png"
+  href="https://remove-white-background.imageonline.co/cn/"
+/>
+
+
 </div>
 
 ### CSS 相关

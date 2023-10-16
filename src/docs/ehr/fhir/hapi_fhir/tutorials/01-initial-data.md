@@ -79,3 +79,10 @@ Now, we should load 27 patient resources, we can run below code to check it:
 resources = client.resources('Patient')
 print(await resources.count())
 ``` 
+
+## Summary
+
+From this toturial we learned how to:
+
+- upload synthea FHIR R4 patients `Bundle` resources to the HAPI fhir server.
+- check the loaded resources count.
