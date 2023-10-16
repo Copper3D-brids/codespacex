@@ -50,7 +50,7 @@ import Card from '../../../.vitepress/theme/components/Card.vue';
 <Card 
   title="RemoveBg"
   desc="Remove the white background to, sava as .png"
-  href="https://www.remove.bg/zh/"
+  href="https://remove-white-background.imageonline.co/cn/"
 />
 
 
