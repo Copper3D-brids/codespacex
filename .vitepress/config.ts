@@ -53,14 +53,14 @@ export default {
       "/docs/inspirations": createInspirationsSidebar(),
       // EHR
       "/docs/ehr": createEHRColumnSidebar(),
-      // Py
-      "/docs/py/basic/": createPySidebar(),
-      // MySQL
-      "/docs/mysql/basic/": createMySQLSidebar(),
-      // 面试
-      "/docs/interview/": createInterviewSidebar(),
-      // 随笔
-      "/docs/essay": createEssaySidebar(),
+      // DevOps
+      "/docs/devops/": createDevOpsSidebar(),
+      // // MySQL
+      // "/docs/mysql/basic/": createMySQLSidebar(),
+      // // 面试
+      // "/docs/interview/": createInterviewSidebar(),
+      // // 随笔
+      // "/docs/essay": createEssaySidebar(),
 
       "/docs/code-tools": createCodeToolsSidebar(),
     },
@@ -120,6 +120,26 @@ function createNav() {
       ],
     },
     {
+      text: "🦾 DevOps",
+      items: [
+        {
+          text: "Elastic Search",
+          link: "/docs/devops/elastic-search/index",
+          activeMatch: "/docs/devops",
+        },
+        {
+          text: "Docker",
+          link: "/docs/devops/docker/index",
+          activeMatch: "/docs/devops",
+        },
+        {
+          text: "Kubernetes",
+          link: "/docs/devops/kubernetes/index",
+          activeMatch: "/docs/devops",
+        },
+      ],
+    },
+    {
       text: "🔧 Coding tools",
       link: "/docs/code-tools/nav",
       activeMatch: "/docs/code-tools/",
@@ -127,8 +147,7 @@ function createNav() {
   ];
 }
 
-
-function createInspirationsSidebar(){
+function createInspirationsSidebar() {
   return [
     {
       text: "",
@@ -150,35 +169,7 @@ function createInspirationsSidebar(){
 }
 
 /**
- * @description 面试 sidebar
- */
-function createInterviewSidebar() {
-  return [
-    {
-      text: "",
-      collapsed: false,
-      items: [
-        {
-          text: "计算机网络",
-          link: "/docs/interview/internet-questions",
-        },
-        { text: "浏览器", link: "/docs/interview/browser-questions" },
-        { text: "HTML、CSS", link: "/docs/interview/html-css" },
-        { text: "Javascript", link: "/docs/interview/javascript" },
-        { text: "TypeScript", link: "/docs/interview/typescript" },
-        { text: "移动端", link: "/docs/interview/mobile" },
-        { text: "Vue2", link: "/docs/interview/vue2" },
-        { text: "React", link: "/docs/interview/react" },
-        { text: "Webpack", link: "/docs/interview/webpack" },
-        { text: "Vite", link: "/docs/interview/vite" },
-        { text: "Node", link: "/docs/interview/node" },
-      ],
-    },
-  ];
-}
-
-/**
- * @description 专栏 sidebar
+ * @description EHR sidebar
  */
 function createEHRColumnSidebar() {
   return [
@@ -208,7 +199,7 @@ function createEHRColumnSidebar() {
             {
               text: "Hapi FHIR",
               link: "/docs/ehr/fhir/hapi_fhir/hapi-fhir",
-              items:[
+              items: [
                 {
                   text: "T-00 Synthea data",
                   link: "/docs/ehr/fhir/hapi_fhir/tutorials/00-synthea",
@@ -221,7 +212,7 @@ function createEHRColumnSidebar() {
                   text: "T-02 Patient resource",
                   link: "/docs/ehr/fhir/hapi_fhir/tutorials/02-patient-resource",
                 },
-              ]
+              ],
             },
             {
               text: "OMOP on FHIR",
@@ -250,57 +241,26 @@ function createEHRColumnSidebar() {
 }
 
 /**
- * @description 随笔 sidebar
+ * @description DevOps sidebar
  */
-function createEssaySidebar() {
+function createDevOpsSidebar() {
   return [
     {
-      text: "Vue",
-      collapsed: false,
-      items: [{ text: "源码角度分析, Vue3 做的优化", link: "" }],
-    },
-    {
-      text: "小程序",
+      text: "Elastic Search",
       collapsed: false,
       items: [
-        { text: "微信原生开发入门", link: "" },
-        { text: "基于微信原生仿卖座网开发总结", link: "" },
+        { text: "Usage & Scope", link: "/docs/devops/elastic-search/index" },
       ],
     },
-  ];
-}
-
-/**
- * @description Python sidebar
- */
-function createPySidebar() {
-  return [
     {
-      text: "Basic",
+      text: "Docker",
       collapsed: false,
-      items: [
-        { text: "数据类型、运算符", link: "/docs/py/basic/数据类型-运算符" },
-        { text: "数据类型（高级）", link: "/docs/py/basic/数据类型-高级" },
-        {
-          text: "分支、循环、函数、文件IO、异常捕获、模块",
-          link: "/docs/py/basic/循环-函数",
-        },
-        {
-          text: "名称空间、作用域、闭包、nonlocal、global",
-          link: "/docs/py/basic/作用域",
-        },
-        { text: "装饰器", link: "/docs/py/basic/装饰器" },
-        {
-          text: "生成器、迭代器、表达式",
-          link: "/docs/py/basic/生成器-迭代器-表达式",
-        },
-        { text: "面向对象", link: "/docs/py/basic/面向对象" },
-        { text: "pymysql 基本操作", link: "/docs/py/basic/pymysql" },
-        { text: "内置模块", link: "/docs/py/basic/内置模块" },
-        { text: "requiests", link: "/docs/py/basic/requiest" },
-        { text: "网络编程", link: "/docs/py/basic/网络编程" },
-        { text: "异步编程", link: "/docs/py/basic/线程" },
-      ],
+      items: [{ text: "Usage & Scope", link: "/docs/devops/docker/index" }],
+    },
+    {
+      text: "Kubernetes",
+      collapsed: false,
+      items: [{ text: "Usage & Scope", link: "/docs/devops/kubernetes/index" }],
     },
   ];
 }
