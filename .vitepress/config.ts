@@ -124,7 +124,7 @@ function createNav() {
       items: [
         {
           text: "Elastic Search",
-          link: "/docs/devops/elastic-search/index",
+          link: "/docs/devops/elastic-search/00-index",
           activeMatch: "/docs/devops",
         },
         {
@@ -259,7 +259,11 @@ function createDevOpsSidebar() {
       text: "Elastic Search",
       collapsed: false,
       items: [
-        { text: "Usage & Scope", link: "/docs/devops/elastic-search/index" },
+        { text: "Usage & Scope", link: "/docs/devops/elastic-search/00-index" },
+        {
+          text: "Basic Knowledge",
+          link: "/docs/devops/elastic-search/01-knowledge",
+        },
       ],
     },
     {
@@ -283,9 +287,7 @@ function createCopper3dSidebar() {
     {
       text: "Copper3d",
       collapsed: false,
-      items: [
-        { text: "📚 Issues", link: "/docs/copper3d/issues" },
-      ],
+      items: [{ text: "📚 Issues", link: "/docs/copper3d/issues" }],
     },
   ];
 }
