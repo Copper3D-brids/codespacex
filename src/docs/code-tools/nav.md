@@ -47,6 +47,12 @@ import Card from '../../../.vitepress/theme/components/Card.vue';
   href="https://remove-white-background.imageonline.co/cn/"
 />
 
+<Card 
+  title="Markdown Table Generator"
+  desc="Convert text to markdown table"
+  href="https://tableconvert.com/markdown-generator"
+/>
+
 </div>
 
 ### CSS Related
