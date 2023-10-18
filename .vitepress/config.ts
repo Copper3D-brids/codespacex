@@ -55,8 +55,8 @@ export default {
       "/docs/ehr": createEHRColumnSidebar(),
       // DevOps
       "/docs/devops/": createDevOpsSidebar(),
-      // // MySQL
-      // "/docs/mysql/basic/": createMySQLSidebar(),
+      // Copper3d
+      "/docs/copper3d/": createCopper3dSidebar(),
       // // 面试
       // "/docs/interview/": createInterviewSidebar(),
       // // 随笔
@@ -136,6 +136,16 @@ function createNav() {
           text: "Kubernetes",
           link: "/docs/devops/kubernetes/index",
           activeMatch: "/docs/devops",
+        },
+      ],
+    },
+    {
+      text: "Copper3d",
+      items: [
+        {
+          text: "Issues",
+          link: "/docs/copper3d/issues",
+          activeMatch: "/docs/copper3d",
         },
       ],
     },
@@ -266,39 +276,28 @@ function createDevOpsSidebar() {
 }
 
 /**
- * @descriptionc MySQL sidebar
+ * @descriptionc Copper3d sidebar
  */
-function createMySQLSidebar() {
+function createCopper3dSidebar() {
   return [
     {
-      text: "MySQL",
+      text: "Copper3d",
       collapsed: false,
       items: [
-        { text: "📚 导读", link: "/docs/mysql/basic/index" },
-        { text: "基础语法", link: "/docs/mysql/basic/语法" },
-        { text: "数据类型及表操作", link: "/docs/mysql/basic/表操作" },
-        { text: "数据查询", link: "/docs/mysql/basic/数据查询" },
+        { text: "📚 Issues", link: "/docs/copper3d/issues" },
       ],
     },
   ];
 }
 
 /**
- * @description 编程工具 sidebar
+ * @description Programming tools sidebar
  */
 function createCodeToolsSidebar() {
   return [
-    // {
-    //   text: "VSCode 配置",
-    //   link: "/docs/code-tools/vscode",
-    // },
     {
       text: "Resources",
       link: "/docs/code-tools/nav",
     },
   ];
 }
-
-// dandanzan oletv + 电影名 =》 google
-// duyaoss
-// ddys
