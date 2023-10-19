@@ -1,4 +1,4 @@
-# Synthea dataset
+# Tutorial - Synthea dataset
 
 ## Download from Official website
 - Download fhir r4 synthea data from their [official dataset](https://synthea.mitre.org/downloads).

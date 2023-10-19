@@ -55,6 +55,23 @@ import Card from '../../../.vitepress/theme/components/Card.vue';
 
 </div>
 
+
+### Cloud Test
+
+
+<Card 
+  title="Azure 104 Exam Actual Questions"
+  desc="Azure Administrator Associate"
+  href="https://www.examtopics.com/exams/microsoft/az-104/view/"
+/>
+
+
+<Card 
+  title="AWS: Full-stack App Tutorial"
+  desc="Build modern full-stack applications on AWS"
+  href="https://sst.dev/"
+/>
+
 ### CSS Related
 
 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">

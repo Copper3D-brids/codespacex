@@ -222,6 +222,10 @@ function createEHRColumnSidebar() {
                   text: "T-02 Patient resource",
                   link: "/docs/ehr/fhir/hapi_fhir/tutorials/02-patient-resource",
                 },
+                {
+                  text: "T-03 Observation resource",
+                  link: "/docs/ehr/fhir/hapi_fhir/tutorials/03-observation-resource",
+                },
               ],
             },
             {

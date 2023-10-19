@@ -1,4 +1,4 @@
-# FHIR Patient Resource
+# Tutorial - FHIR Patient Resource
 
 - Tutorial code on GitHub [hapi-py-fhir-tutorials -- patientOpeartor.py](https://github.com/Copper3D-brids/hapi-py-fhir-tutorials/blob/main/patientOperator.py).
 
