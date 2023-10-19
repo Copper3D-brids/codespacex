@@ -123,6 +123,11 @@ function createNav() {
       text: "🦾 DevOps",
       items: [
         {
+          text: "Azure",
+          link: "/docs/devops/azure/azure-104",
+          activeMatch: "/docs/devops",
+        },
+        {
           text: "Elastic Search",
           link: "/docs/devops/elastic-search/00-index",
           activeMatch: "/docs/devops",
@@ -279,6 +284,11 @@ function createDevOpsSidebar() {
       text: "Kubernetes",
       collapsed: false,
       items: [{ text: "Usage & Scope", link: "/docs/devops/kubernetes/index" }],
+    },
+    {
+      text: "Azure",
+      collapsed: false,
+      items: [{ text: "Azure 104", link: "/docs/devops/azure/azure-104" }],
     },
   ];
 }
