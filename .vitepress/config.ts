@@ -231,6 +231,10 @@ function createEHRColumnSidebar() {
                   text: "T-03 Observation resource",
                   link: "/docs/ehr/fhir/hapi_fhir/tutorials/03-observation-resource",
                 },
+                {
+                  text: "T-04 Practitioner & Schedule resource",
+                  link: "/docs/ehr/fhir/hapi_fhir/tutorials/04-practitioner-schedule-resource",
+                },
               ],
             },
             {

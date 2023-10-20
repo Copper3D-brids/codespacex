@@ -1,6 +1,6 @@
 # Tutorial - FHIR Observation Resource
 
-- Tutorial code on GitHub [hapi-py-fhir-tutorials -- patientOpeartor.py](https://github.com/Copper3D-brids/hapi-py-fhir-tutorials/blob/main/observationOperator.py).
+- Tutorial code on GitHub [hapi-py-fhir-tutorials -- observationOpeartor.py](https://github.com/Copper3D-brids/hapi-py-fhir-tutorials/blob/main/observationOperator.py).
 
 - Currently, it is a **private** repository, will open source later...
 
