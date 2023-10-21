@@ -53,6 +53,12 @@ import Card from '../../../.vitepress/theme/components/Card.vue';
   href="https://tableconvert.com/markdown-generator"
 />
 
+<Card 
+  title="Readme Typing SVG"
+  desc="Convert text to typing image"
+  href="https://readme-typing-svg.demolab.com/demo/"
+/>
+
 </div>
 
 ### Cloud Test

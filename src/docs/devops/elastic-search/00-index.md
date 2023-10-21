@@ -1,5 +1,9 @@
 # ElasticSearch
 
+Elasticsearch is oriented towards document storage, which can be a piece of product data in database, or an order message.
+
+The document data is serialised into json format and stored in elasticsearch.
+
 ElasticSearch is a open-source distributed search engine. It can be used to achieve `Search`, `Log Statistics`, `Analysis`, `System Monitor`, .etc.
 
 ## What is elastic stack (ELK)?

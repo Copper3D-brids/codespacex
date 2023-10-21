@@ -1,5 +1,9 @@
 # OMOP on FHIR
 
+## EHR FHIR & OMOP
+
+![image](/omop/omop-04.png)
+
 ## Observational Medical Outcomes Partnership (OMOP)
 
 ### what are difference to FHIR, what implementations are there e.g. python API?
