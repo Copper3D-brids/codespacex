@@ -277,6 +277,10 @@ function createDevOpsSidebar() {
           text: "Basic Knowledge",
           link: "/docs/devops/elastic-search/01-knowledge",
         },
+        {
+          text: "Install Elasticsearch",
+          link: "/docs/devops/elastic-search/02-es-install",
+        },
       ],
     },
     {
