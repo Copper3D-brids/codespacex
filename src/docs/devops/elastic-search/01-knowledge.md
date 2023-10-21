@@ -1,4 +1,9 @@
-# Elastic Knowledges
+# Elasticsearch Knowledges
+
+## Index in Elasticsearch
+
+- `Index`: A set of same types of document.
+- `Mapping`: Field constraint information for documents in an index, similar to structural constraints for tables.
 
 ## Forward Index and Inverted Index
 
@@ -30,3 +35,19 @@ Segment the document content and create an index of the terms and record the inf
 | huawei    | 4, 5        |
 | headphone | 5           |
 | mac       | 6           |
+
+## MySql vs Elasticsearch compare
+
+| MySQL  | Elasticsearch | Description                                                                                                           |
+| ------ | ------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Table  | Index         | Index is a set of document, similar to the table in database.                                                         |
+| Row    | Document      | Document is each data, similar to the rows in database. All documents are JSON format.                                |
+| Column | Field         | Field is fields in a json document, similar the Column in database.                                                   |
+| Schema | Mapping       | Mapping is the constraints of document in Index, such as field type constraints. It is similar to Schema in database. |
+| SQL    | DSL           | DSL is a JSON-style request statement provided by elasticsearch to manipulate elasticsearch and implement CRUD.       |
+
+- Architecture
+  - MySQL: it specialises in transaction type operations that ensure data security and consistency.
+  - Elasticsearch: it is good at searching, analysing, and calculating large amounts of data.
+
+![Elasticsearch](/devops/elasticsearch/elastic-01.png)
