@@ -2,6 +2,8 @@
 
 ## Documentation
 
+- [Azure 104 exam](https://www.examtopics.com/exams/microsoft/az-104/view/)
+
 - [Azure docs](https://learn.microsoft.com/en-us/azure/?product=popular)
 
 - [Azure 104 learn path](https://learn.microsoft.com/en-us/credentials/certifications/exams/az-104/)
@@ -113,6 +115,27 @@ You create a new user account in the on-premise Active Directory. You now need t
     Restarting the NetLogon service on a domain controller will not directly trigger the synchronization process between the on-premises Active Directory and Azure AD.
 
     To replicate the new user information to Azure AD immediately, you should use Azure AD Connect, the synchronization tool for integrating on-premises Active Directory with Azure AD. Azure AD Connect is responsible for synchronizing changes between the on-premises environment and Azure AD.
+
+#### Scenario - on-premises Azure AD
+
+Your company has an Azure Active Directory (Azure AD) tenant that is configured for hybrid coexistence with the on-premises Active Directory domain. The on-premise virtual environment consists of virtual machines (VMs) running on Windows Server 2012 R2 Hyper-V host servers. You have created some PowerShell scripts to automate the configuration of newly created VMs. You plan to create serveral new VMs. You need a solution that ensures the scripts are run on the new VMs.
+
+Which of the following is the best solution?
+
+- A. Configure a SetupComplete.cmd batch file in the %windir%\setup\scripts directory.
+- B. Configure a Group Policy Object (GPO) to run the scripts as logon scripts.
+- C. Configure a Group Policy Object (GPO) to run the scripts as startup scripts.
+- D. Place the scripts in a new virtual hard disk (VHD).
+
+**Correct Solution**: `Configure a SetupComplete.cmd batch file in the %windir%\setup\scripts directory`
+
+**Explanation**:
+
+After Windows is installed but before the logon screen appears, Windows Setup searches for the SetupComplete.cmd file in the %WINDIR%\Setup\Scripts\ directory. Reference is [here](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/add-a-custom-script-to-windows-setup?view=windows-11).
+
+After you deploy a Virture Machine you typically need to make some changes before it's ready to use. This is something you can do manually or you could use Remote PowerShell to automate the configuration of your VM after deployment for example.
+
+But now there's a third alternative avaliable allowing you customize your VM: the CustomScriptextension. This CustomScript extension is executed by the VM Agent and it's very straitghtforward: you specify which files it needs to download from your storage account and which file it needs to execute. You can even specify arguments that need to be passed to the script. The only requirement is that you execute a .ps1 file.
 
 ### Certification Authority (CA)
 
