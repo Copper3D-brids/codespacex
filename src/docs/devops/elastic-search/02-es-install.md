@@ -2,6 +2,9 @@
 
 ## Deploy Single ES
 
+- [Offical docs for install elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html)
+- [Official docs for install kibana](https://www.elastic.co/guide/en/kibana/current/docker.html)
+
 ### Create Network
 
 Due to we need to interconnect the es and kibana containers, we also need to deploy `kibana` container.
@@ -19,8 +22,6 @@ docker network create es-net
 ```
 
 ### Load Docker Image
-
-[Official docs](https://www.elastic.co/guide/en/kibana/current/docker.html)
 
 - Load `elasticsearch`
   Here we are using elasticsearch v8.10.4 image.

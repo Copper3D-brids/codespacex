@@ -23,7 +23,7 @@ features:
     details: More details on EHR & FHIR & OMOP
     link: /docs/ehr/index
     linkText: Let's go
-  - icon: 🌋 
+  - icon: 🌋
     title: FHIR & Server Tutorials
     details: HAPI FHIR Server via synthea data, tutorials
     link: /docs/ehr/fhir/hapi_fhir/tutorials/00-synthea
