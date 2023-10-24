@@ -41,6 +41,64 @@ Use the ImagingStudy resource to store details of an entire DICOM Study and asso
 ##### Terminology Bindings
 Have a look at [ImagingStudy Resource Terminology Bindings](https://www.hl7.org/fhir/imagingstudy.html#tx).                          
 
+##### Implementation Notes
+A referenced DICOM SOP instance could be:
+- A single- or multi-frame, still or video image captured by a variety of imaging modalities, such as X-ray, MR, and ultrasound.
+- A set of various preasentation parameters, including annotaction and markup.
+- A set of measurements or a report, including radiation dose report and CAD analysis.
+- An encapsulated PDF or CDA document.
+- A list of instances, such as key `of interest` images, or instances to be `deleted`. 
+- Or other DICOM content.
+
+DICOM Series Instance UID and SOP Instance UID use the `id` datatype, and are encoded directly. For example, an image with SOP Instance UID of `2.16.124.113543.1154777499.30246.19789.3503430045.1.1` is encoded in `ImagingStudy.series.instance.uid` as `2.16.124.113543.1154777499.30246.19789.3503430045.1.1`.
+
+The ImagingStudy's DICOM Study Instance UID is encoded in the `ImagingStudy.identifier` element, which is of the `Identifier` datatype. When encoding a DICOM UID in an `Identifier` datatype, use the Identifier system of `"urn:dicom:uid"`, and prefix the UID calue with `"urn:oid:"`. Therefore, an ImagingStudy with DICOM Study Instance UID of `2.16.124.113543.1154777499.30246.19789.3503430046` is encoded as:
+
+```json
+{
+    "identifier":{
+        "system":"urn:dicom:uid",
+        "value":"urn:oid:2.16.124.113543.1154777499.30246.19789.3503430046"
+    }
+}
+```
+
+The `study accession number` can also be encoded as an `Reference.Identifier` using the ServiceRequest Reference type and the `ACSN` identifier type, as follows:
+
+```json
+"basedOn": [
+    "reference": {
+        "type": "ServiceRequest",
+        "identifier":{
+            "type" : {
+                "coding" : [
+                    {
+                        "system" : "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code" : "ACSN"
+                    }
+                ]
+            },
+            "system":"http://ginormoushospital.org/accession",
+            "value":"GH334103"
+        }
+    }
+]
+```
+###### ImagingStudy.endpoint
+
+The ImagingStudy.endpoint elements and ImagingStudy.series.endpoint elements indicate network services that can be used to access the studies, series, or instances, for example, a DICOM `WADO-RS` server. 
+
+- An `ImagingStudy.series.endpoint` of a particular Endpoint.connectionType provides that service for that series, and all contained instances.
+
+- An `ImagingStudy.endpoint` of a particular connection type provides that service for all series in that study that do not have a specified Endpoint of that type, and their contained instances.
+
+That is, an ImagingStudy.series.endpoint overrides an ImagingStudy.endpoint of the same connection type. Systems can determine if a particular study, series, or instance is available or offline by interacting with the endpoint. Since each study, or individual series of a study can be stored on different imaging archive servers, per-series endpoints are required. For the identified services and use cases, all instances within a series would be stored together, and thus instance-level endpoints are not defined.
+
+Different Endpoint connection types may have different capabilities, protocols or requirements; and the specified `Endpoint.address` may require manipulation. See below for the details on use of imaging-related Endpoint connection types.
+
+**WADO-RS**
+
+**WADO-URI**
 
 
 #### ImagingSelection Resource
