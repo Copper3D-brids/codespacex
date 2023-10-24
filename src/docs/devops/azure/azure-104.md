@@ -297,3 +297,72 @@ Which of the following should you create to achieve your goal?
 - **Explanation**
 
 You can use a template that allows you to deploy a simple Windows VM by retrieving the password that is stored in a `Key Vault`. Therefore, the password is never put in plain text in the template parameter file.
+
+#### Scenario - Upload VM images to Azure
+
+Your company has an Azure Active Directory (Azure AD) tenant that is configured for hybrid coexistence with the on-premises Active Directory domain. You plan to deploy several new virtual machines (VMs) in Azure. The VMs will have the same operating system and custom sofetware requirements. You configure a reference VM in the on-premise virtual environment. You then generalize the VM to create an image. You need to upload the image to Azure to ensure that it is available for selection when you create the new Azure VMs.
+
+Which PowerShell cmdlets should you use?
+
+- A. Add-AzVM
+- B. Add-AzVhd
+- C. Add-AzImage
+- D. Add-AzImageData Disk
+
+**Correct Solution**: `Add-AzVhd`
+
+**Explanation**:
+
+The Add-AzVhd cmdlet uploads on-premises virtual hard disks, in .vhd file format, to a blob storage account as fixed virtual hard disks. Reference [here](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/upload-generalized-managed).
+
+- `New-AzVM` is for creating new VMs, not uploading images.
+- `Add-AzImage` does not exist. The correct command is "New-AzImage".
+- `Add-AzImageDataDisk` adds a data disk to an image object.
+
+#### Scenario - Replicate Hyper-V server VM to Azure
+
+Your company has an Azure subcription that includes a number of Azure virtual machines (VMs), which are all part of the same virtual network. Your company also has an on-premises Hyper-V server that hosts a VM, named VM1, which must be replicated to Azure.
+
+Which of the following objects that must be created to achieve this goal?
+
+- Hyper-V site
+- Storage account
+- Azure Recovery Services Vault
+- Azure Traffic Manager instance
+- Replication policy
+- Endpoint
+
+**Correct Solution**: `Hyper-V site` + `Azure Recovery Services Vault` + `Replication policy`
+
+**Explanation**:
+
+- As for the physical servers: `Storage Account` + `Azure Recovery Services Vault` + `Replication policy`. [Reference here](https://docs.microsoft.com/en-us/azure/site-recovery/physical-azure-disaster-recovery).
+- In terms of Hyper-V server: `Hyper-V site` + `Azure Recovery Services Vault` + `Replication policy`. [Reference here](https://docs.microsoft.com/en-nz/azure/site-recovery/hyper-v-prepare-on-premises-tutorial).
+
+### Azure Virtual Network
+
+#### Scenario - VPN Connection with Virtual Network
+
+You company's Azure subscription includes two Azure networks named VirtualNetworkA and VirtualNetworkB. VirtualNetworkA includes a VPN gateway that is configured to make use of static routing. Also, a site-to-sit VPN connection exists between your company's on-premises network and VirtualNetworkA.
+
+You have ro configured a point-tosite VPN connection to Virtual NetworkA from a workstation running Windows 10. After configuring virtual network peering between VirtualNetworkA and VirtualNetworkB, you confirm that you are able to access VirtualNetworkB from the company's on-premises network. However, you find that you cannot establish a connection to VirtualNetworkB form the Windows 10 workstation.
+
+You have to make sure that a connection to VirtualNetworkB can be established from the Windows 10 workstation.
+
+**Correct Solution**: You download and re-install the VPN client configuration package on the Windows 10 workstation.
+
+**Wrong Solution**:
+
+- A: You chosse the Allow gateway transit setting on VirtualNetworkA
+
+  - **Explanation**:
+
+  "After configuring virtual network peering between VirtualNetworkA and VirtualNetworkB, you confirm that you are able to access VirtualNetworkB from the company's on-premises network" This indicates the `Allow/Use gateway transit` is set up working. The next step will be restart/reinstall the VPN-Client config at the windows 10 workstation.
+
+  Reference [here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-point-to-site-routing).
+
+- B: You choose the Allow gateway transit setting on VirtualNetworkB.
+
+  - **Explanation**:
+
+  After reconfiguring \ creating peering existing point-to-site VPN connections need to be recreated.
