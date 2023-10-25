@@ -339,6 +339,58 @@ Which of the following objects that must be created to achieve this goal?
 - As for the physical servers: `Storage Account` + `Azure Recovery Services Vault` + `Replication policy`. [Reference here](https://docs.microsoft.com/en-us/azure/site-recovery/physical-azure-disaster-recovery).
 - In terms of Hyper-V server: `Hyper-V site` + `Azure Recovery Services Vault` + `Replication policy`. [Reference here](https://docs.microsoft.com/en-nz/azure/site-recovery/hyper-v-prepare-on-premises-tutorial).
 
+#### Scenario - Remote VM
+
+Your company has virtual machines (VMs) hosted in Microsoft Azure. The VMs are located in a single Azure virtual network named VNet1. The company has users that work remotely. The remote workers require access to the VMs on VNet1.
+
+You need to probide access for the remote workders.
+
+What should you do?
+
+- A. Configure a Site-to-Site (S2S) VPN.
+- B. Configure a VNet-toVNet VPN.
+- C. Configure a Point-to-Site (P2S) VPN.
+- D. Configure DirectAccess on a Windows Server 2012 server VM.
+- E. Configure a Multi-Site VPN.
+
+**Correct Solution**: Configure a Point-to-Site (P2S) VPN. [VPN gateway reference](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways) and [work remote support reference](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways).
+
+- **Explanation**:
+  - `S2S`: fixed location. It would be better if you know that the remote workers work from one location.
+  - `P2S`: flexible location. From any different locations (like home, hotel) to connect the VM site.
+
+A Point-to-Site (P2S) VPN gateway connection lets you create a secure connection to your virtual network from an individual client computer anywhere.
+
+#### Scenario - Interal load balancer
+
+Your company has a Microsoft SQL Server Always On availability group configured on their Azure virtual machines (VMs). You need to configure an Azure internal load balancer as a listner for the availability group.
+
+**Correct Solution**: Enable Floating IP.
+
+- **Explanation**: By enabling Floating IP, the load balancer will use a floating IP address as the source IP address for outbound flows from the backend pool. this will ensure that the IP address used by the backend pool remains the same even if a VM is restarted or replaced, which is important for maintaining the listener for the availability group.
+
+**Wrong Solution**:
+
+- A: You create an HTTP health probe on probe on port 1433
+
+  - **Explanation**:
+
+  Port 1433 is used by SQL Server for SQL Server Database Engine connnections. It is using TCP protocol rather than HTTP protocol.
+
+- B: You set Session persostence to Client IP
+
+  - **Explanation**:
+
+  Session persistence ensures that a client will remain connected to the same server throughout a session or period of time. Because load balancing may, by default, send users to unique servers each time they connect, this can mean that complicated or repeated requests are slowed down.
+
+  The load balancing rules configure how the load balancer routes traffic to the SQL Server instances. For this load balancer, you enable direct server return because only one of the two SQL Server instances owns the availability group listener resource at a time.
+
+  Therefore Floating IP (direct server return) is Enabled.
+
+  TCP 1433 is the standard SQL port. The availability group listener health probe port has to be different from the cluster core IP address health probe port.
+
+  The ports on a health probe are TCP59999 and TCP58888. [Reference](https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/availability-group-load-balancer-portal-configure?view=azuresql)
+
 ### Azure Virtual Network
 
 #### Scenario - VPN Connection with Virtual Network
