@@ -225,6 +225,19 @@ Accept: application/dicom+json
 
 The WADO-RS server then returns the complete DICOM metadata for the requested series.
 
+
+#### Identifier FHIR DataType
+
+Identifier systems are URIs that may be used in the system element of the Identifier datatype. 
+
+[HL7 Terminology](https://terminology.hl7.org/identifiers.html) provides a registry of Identifier systems which are actively curated by HL7 International. If a URI is defined in HL7 Terminology, it **SHOULD** be used in preference to any other Identifier.system. If the URI was defined in HL7 Terminology prior to an official release of the FHIR core specification, those URIs **SHALL** be used in preference to any other Identifier.system. E.g, all system URIs defined on terminology.hl7.org prior to the release of FHIR R5 **SHELL** be used in systems claiming conformance to FHIR R5.
+
+Many identifier systems are 'local', for example the identifiers used for employee numbers, local medical record numbers, local order and encounter numbers, etc. The system URIs for such identifiers are generally determined and managed by the issuing system. However, `shared` identifiers that are used across a wide variety of systems, such as license numbers, government-assigned identifiers, etc. need to have consistent URIs. In most cases, the assigners of these identifiers will not have published an official URI.
+
+If an identifier system for a `shared` identifier is not listed in HL7 Terminology, implementers **SHOULD** (and HL7 international published specifications **SHALL**) follow the process for determining Identifier.system URIs defined by the HL7 Terminology Authority, as documented [here](https://confluence.hl7.org/display/TA/Validating+and+Requesting+Identifiers+for+an+External+Code+Systems+and+Identifier+Systems).
+
+See also the [list of known coding systems](https://www.hl7.org/fhir/terminologies-systems.html) that can be used in the system element of the [Coding](https://www.hl7.org/fhir/datatypes.html#Coding) datatype.
+
 #### ImagingSelection Resource
 
 #### Endpoint Resource
