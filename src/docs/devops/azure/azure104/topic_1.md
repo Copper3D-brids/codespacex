@@ -137,6 +137,26 @@ After you deploy a Virture Machine you typically need to make some changes befor
 
 But now there's a third alternative avaliable allowing you customize your VM: the CustomScriptextension. This CustomScript extension is executed by the VM Agent and it's very straitghtforward: you specify which files it needs to download from your storage account and which file it needs to execute. You can even specify arguments that need to be passed to the script. The only requirement is that you execute a .ps1 file.
 
+#### Scenario Create Accounts via Azure AD
+
+You have an Azure Active Directory (Azure AD) tenant named contoso.com.
+
+You have a CSV file that contains the names and email address of 500 external users.
+
+You need to create a guest user account in contoso.com for each the 500 external users.
+
+**Correct Solution**: You create a PowerShell script that runs the New-Azure ADMInvitation cmdlet for each external user.
+
+- **Explanation**:
+
+[Reference](https://docs.microsoft.com/en-us/powershell/module/azuread/new-azureadmsinvitation)
+
+**Wrong Solution**:
+
+- A: From Azure AD in the Azure portal, you use the Bulk create user operation.
+
+- B: You create a PowerShell script that runs the New-AzureADUser cmdlet for each user.
+
 ### Certification Authority (CA)
 
 #### Scenario for CA
@@ -391,6 +411,87 @@ Your company has a Microsoft SQL Server Always On availability group configured 
 
   The ports on a health probe are TCP59999 and TCP58888. [Reference](https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/availability-group-load-balancer-portal-configure?view=azuresql)
 
+#### Scenario Static IP on VMs
+
+Your company has two on-premises servers named SRV01 and SRV02. Developers have created an application that runs on SRV01. The application calls a service on SRV02 by IP address.
+
+You plan to migrate the application on Azure virtual machines (VMs). You have configured two VMs on a single subnet in an Azure virtual network.
+
+You need to configure the two VMs with static internal IP address.
+
+What should you do?
+
+- A. Run the New-AzureRMVMConfig PowerShell cmdlet.
+- B. Run the Set-AzureSubnet PowerShall cmdlet.
+- C. Modify the VM properties in the Azure Management Portal.
+- D. Modify the IP properties in Windows Network and Sharing Center.
+- E. Run the Set-AzureStaticVNetIP PowerShell cmdlet.
+
+**Correct Solution**: Run the Set-AzureStaticVNetIP PowerShell cmdlet.
+
+- **Explanation**:
+
+The Set-AzureStaticVNetIP PowerShell cmdlet is used to set a static internal IP address for an Azure virtual machine. This cmdlet allows you to set the IP address, subnet mask, and default gateway for the virtual machine's network interface. [Reference](https://learn.microsoft.com/en-us/powershell/module/servicemanagement/azure/set-azurestaticvnetip?view=azuresmps-4.0.0)
+
+Option A, New-AzureRMVMConfig, is used to create a new virtual machine configuration object.
+
+Option B, Set-AzureSubnet, is used to modify the properties of an existing Azure subnet, not to set static IP addresses for virtual machines.
+
+Option C, modifying VM properties in the Azure Management Portal, does not provide a way to set static IP addresses for virtual machines.
+
+Option D, modifying the IP properties in Windows Network and Sharing Center, only applies to the local network interface of the VM and does not set a static internal IP address for the VM on the Azure virtual network.
+
+#### Scenario Recover files on VM
+
+Your company's Azure subscription includes Azure virtual machines (VMs) that run [Windows Server 2016](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2016).
+
+One of the VMs is backed up every day using Azure Backup Instant Restore.
+
+When the VM becomes infected with data encryting ransomware, you decide to recover the VM's files.
+
+Which of the following is TRUE in this scenario?
+
+- A. You can only recover the files to the infected VM.
+- B. You can recover the files to any VM within the company's subscription.
+- C. You can only recover the files to a new VM.
+- D. You will not be able to recover the files.
+
+**Correct Solution**: You can recover the files to any VM within the company's subscription.
+
+- **Explanation**:
+
+Azure Backup Instant Restore is available for all Azure Backup VM's.
+
+#### Scenario Resotre VM
+
+Your company's Azure subscription includes Azure virtual machines (VMs) that run Windows Server 2016.
+
+One of the VMs is backed up every day using Azure Backup Instant Restore.
+
+When the VM becomes infected with data encrypting ransomware, you are required to restore the VM.
+
+Which of the following actions should you take?
+
+- A. You should restore the VM after deleting the infected VM.
+- B. You should restore the VM to any VM within the company's subscription.
+- C. You should restore the VM to a new Azure VM.
+- D. You should restore the VM to an on-premise Windows device.
+
+**Correct Solution**: You should restore the VM to a new Azure VM.
+
+- **Explanation**:
+
+  - [Reference to restore vms](https://docs.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms)
+  - [How to restore a system affected by ransomware](https://learn.microsoft.com/en-us/azure/backup/protect-backups-from-ransomware-faq#how-to-restore-a-system-affected-by-ransomware)
+
+In the event of a ransomware infection on an Azure VM that is backed up using Azure Backup Instant Restore, it's generally recommended to restore the VM to a new Azure VM. This ensures that you are not using the compromised VM, and you can have confidence that the new VM is clean and unaffected by the ransomware.
+
+Option A (restoring after deleting the infected VM) could be risky because the compromised VM might still be accessible and could potentially re-infect the new VM.
+
+Option B (restoring to any VM within the company's subscription) is possible, but restoring to a new Azure VM is a safer approach.
+
+Option D (restoring to an on-premise Windows device) would not be relevant for restoring an Azure VM.
+
 ### Azure Virtual Network
 
 #### Scenario - VPN Connection with Virtual Network
@@ -418,3 +519,72 @@ You have to make sure that a connection to VirtualNetworkB can be established fr
   - **Explanation**:
 
   After reconfiguring \ creating peering existing point-to-site VPN connections need to be recreated.
+
+#### Scenario Config network interface for VMs
+
+Your company has an Azure Active Directory (Azure AD) subscription.
+
+The VMs will each have both a public and private IP address. Inbound and outbound security rules for all of these virtual machines must be identical.
+
+Which of the following is the least amount of network interfaces needed for this configuration?
+
+- A. 5
+- B. 10
+- C. 20
+- D. 40
+
+**Correct Solution**: 5
+
+- **Explanation**:
+
+5 VM so 5 NIC Cards .we have public and private ip address set to them .however they needs same inbound and outbound rule so create NSG and attach to NIC and this req can be fulfilled 5 NIC hence 5 is right answer.
+
+### Azure Monitor
+
+#### Scenario Performance Issue
+
+You administer a solution in Azure that is currently having performance issues.
+
+You need to find the casuse of the performance issues pertaining to metrics on the Azure infrastructure.
+
+Which of the following is the tool you should use?
+
+- A. Azure Traffic Analytics
+- B. Azure Monitor
+- C. Azure Activity Log
+- D. Azure Advisor
+
+**Correct Solution**: [Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor//data-platform)
+
+- **Explanation**:
+
+Metrics in Azure Monitor are stored in a time-series database which is optimized for analyzing time-stamped data. This makes metrics particularly suited for alerting and fast detection of issues.
+
+Azure Monitor is the tool used to collect and analyze performance metrics and logs in Azure. It provides insights into the performance of Azure resources, applications, and workloads, and helps identify and troubleshoot issues related to availability, performance, and security. Azure Traffic Analytics is used to monitor and analyze network traffic, Azure Activity Log provides insights into activities performed on Azure resources, and Azure Advisor provides recommendations for improving the performance, security, and reliability of Azure resources.
+
+### Azure Recovery Services Vault
+
+#### Scenario Schedule backup VM to RSV
+
+Your company has an Azure subscription that includes a Recovery Services vault.
+
+You want to use Azure Backup to schedule backup of tour company's viryual machines (VMs) to the Recovery Services Vault.
+
+Which of the following VMs can you back up? Choose all that apply.
+
+- A. VMs that run Windows 10.
+- B. VMs that run Windows Server 2012 or higher.
+- C. VMs that have NOT been shut down.
+- D. VMs that run Debian 8.2+.
+- E. VMs that have been shut down.
+
+**Correct Solution**: ABCDE
+
+- **Explanation**:
+
+Azure Backup supports backup of 64-bit Windows server operating system from Windows Server 2008.
+Azure Backup supports backup of 64-bit Windows 10 operating system.
+Azure Backup supports backup of 64-bit Debian operating system from Debian 7.9+.
+Azure Backup supports backup of VM that are shutdown or offline.
+
+[Backup reference](https://docs.microsoft.com/en-us/azure/backup/backup-support-matrix-iaas https://docs.microsoft.com/en-us/azure/virtual-machines/linux/endorsed-distros)

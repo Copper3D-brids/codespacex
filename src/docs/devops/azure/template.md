@@ -30,3 +30,16 @@
 - B:
 
   - **Explanation**:
+
+### Azure Template 1
+
+#### Scenario 1
+
+- A.
+- B.
+- C.
+- D.
+
+**Correct Solution**:
+
+- **Explanation**:

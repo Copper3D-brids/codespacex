@@ -124,7 +124,7 @@ function createNav() {
       items: [
         {
           text: "Azure",
-          link: "/docs/devops/azure/azure-104",
+          link: "/docs/devops/azure/azure104/topic_1",
           activeMatch: "/docs/devops",
         },
         {
@@ -296,7 +296,18 @@ function createDevOpsSidebar() {
     {
       text: "Azure",
       collapsed: false,
-      items: [{ text: "Azure 104", link: "/docs/devops/azure/azure-104" }],
+      items: [
+        {
+          text: "Azure 104",
+
+          items: [
+            {
+              text: "Topic One",
+              link: "/docs/devops/azure/azure104/topic_1",
+            },
+          ],
+        },
+      ],
     },
   ];
 }
