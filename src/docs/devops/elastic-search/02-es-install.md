@@ -155,3 +155,49 @@ docker logs -f kibana
 **Visit kibana on bowser**
 
 - `http://0.0.0.0:5601`
+
+### Install Analysis
+
+elacticsearch needs to perform word splitting on documents when creating an inverted index. When searching, the user input needs to be processed with a split word. However, the default word splitting rules are not friendly to Chinese language processing.
+
+#### Install IK plugin online
+
+```sh
+# getting inside the container
+docker exec -it es /bin/bash
+
+# download and install it online
+./bin/es-plugin install
+https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.12.1/elasticsearch-analysis-it-7.12.1.zip
+
+exit
+
+# restart container
+docker restart es
+```
+
+#### Install IK plugin locally
+
+- check the es-plugins folder
+
+```sh
+docker volume inspect es-plugins
+```
+
+- download `elasticsearch-analysis-it-7.12.1.zip` from [github elasticsearch-analysis-ik](elasticsearch-analysis-it-7.12.1.zip)
+
+- unzip it into es-plugins `~/desktop/elastic-data/es-plugins`.
+
+- restart container
+
+```sh
+docker restart es
+docker logs -f es
+```
+
+#### IK-Analyzer - expend dictionary
+
+To expand the thesaurus of the ik splitter, simply modify IKAnalyzer.cfg.xml in the config directory of the ik splitter directory. Put the words into below files.
+
+- `ext.dic`: expend dictionary
+- `stopword.dic`: stop words
