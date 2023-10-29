@@ -51,3 +51,79 @@ Segment the document content and create an index of the terms and record the inf
   - Elasticsearch: it is good at searching, analysing, and calculating large amounts of data.
 
 ![Elasticsearch](/devops/elasticsearch/elastic-01.png)
+
+## Index Library Operator
+
+### Mapping feild
+
+mapping is a constraint on documents in an indexed library, common mapping attributes include:
+
+- type: field data type
+  - string: text (text that can be segmented), keyword (e.g., brand, Country, ip address)
+  - number: long, integer, short, byte, double, float
+  - bool: boolean
+  - date: date
+  - object: object
+- index: whether to create an index, default value: true
+- analyzer: use which analyzer
+- properties: the sub-field of current field
+
+### Create Index Library
+
+In ES to operate the index library and document via RESTful request. Using `DSL` syntax to represent request content. The dsl syntax for creating index libraries and mapping is as follows:
+
+```dsl
+PUT /index_library_name
+{
+  "mappings":{
+    "properties":{
+      "field name":{
+        "type": "keyword",
+        "analyzer": "ik_smart"
+      },
+      "field name2":{
+        "type": "keyword",
+        "index": false
+      },
+      "field name3":{
+        "properties":{
+          "sub field"{
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+- example
+
+```dsl
+PUT /test
+{
+  "mappings":{
+    "properties":{
+      "info":{
+        "type": "text",
+        "analyzer": "ik_smart"
+      },
+      "email":{
+        "type": "keyword",
+        "index": "false"
+      },
+      "name":{
+        "properties":{
+          "firstName":{
+            "type":"keyword"
+          },
+          "lastName":{
+            "type":"keyword"
+          },
+        }
+      }
+    }
+  }
+}
+```
