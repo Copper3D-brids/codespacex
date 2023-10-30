@@ -14,8 +14,7 @@ Volunteers Bob and Db recently had breast and heart MRIs taken at the Akron Hosp
 
 This figure shows the correspondence between the SPARC SDS dataset and the FHIR ImagingStudy Resource. From the figure we can see that each `subject/study` under the `primary` folder corresponds to an `ImagingStudy object`. The `sample` folder under each subject folder corresponds to the elements of the `Series array` of the ImagingStudy object. More over, the `dicom files` under each sample folder are stored one by one in the `ImagingStudy.Series.Instance` array.
 
-
-After we understand the relationship between `SPARC SDS dataset` and `FHIR ImagingStudy Resource`, now we can build the FHIR ImagingStudy resources for Bob and Db. Below image shows how we create the SPARC SDS dataset and FHIR resources. From image we can understand, the  Bob and Db's breast and heart MRIs are stored in `sparc-breast-dataset` and `sparc-heart-dataset`. Then we can based on the diagram to convert the data to FHIR ImagingStudy resources.
+After we understand the relationship between `SPARC SDS dataset` and `FHIR ImagingStudy Resource`, now we can build the FHIR ImagingStudy resources for Bob and Db. Below image shows how we create the SPARC SDS dataset and FHIR resources. From image we can understand, the Bob and Db's breast and heart MRIs are stored in `sparc-breast-dataset` and `sparc-heart-dataset`. Then we can based on the diagram to convert the data to FHIR ImagingStudy resources.
 
 ![sparc imagingstudy dev](/fhir/01-fhir-resources/05-sparc-imagingstudy-dev.png)
 
@@ -81,16 +80,16 @@ As a result, the dictionary stucture should looks like below:
 
 Here, for this tutorial we can create two dummy patients for test. In a real development, we need to read the dicom header to find out the patient's information then based on that information to create the `Patient Resource`. As for the information tags you can read [DICOM Part 6 Data Dictionary](https://dicom.nema.org/medical/dicom/current/output/html/part06.html), here provides some examples:
 
-- `(0010, 0010) Patient's Name`                    
-- `(0010, 0020) Patient ID`                         
-- `(0010, 0030) Patient's Birth Date`              
-- `(0010, 0040) Patient's Sex`                      
-- `(0010, 1010) Patient's Age`                      
+- `(0010, 0010) Patient's Name`
+- `(0010, 0020) Patient ID`
+- `(0010, 0030) Patient's Birth Date`
+- `(0010, 0040) Patient's Sex`
+- `(0010, 1010) Patient's Age`
 
 The Patient here is used for reference in ImagingStudy resource.
 
 ```py
- bob = client.resource('Patient',
+bob = client.resource('Patient',
                         name=[
                             {
                                 'given': ['Bob'],
@@ -145,18 +144,19 @@ Here are some useful dicom tags for building ImagingStudy Resource:
 - (0020,1208) Number of Study Related Instances
 - (0020,1206) Number of Study Related Series
 - (0020,1209) Number of Series Related Instances
-- (0018, 0010) Contrast/Bolus Agent              
-- (0018, 0015) Body Part Examined 
+- (0018, 0010) Contrast/Bolus Agent
+- (0018, 0015) Body Part Examined
 
 ### Let's create a ImagingStudy for Bob's breast study
 
-#### Get the study/samples for SPARC dictionary 
+#### Get the study/samples for SPARC dictionary
 
 - Get study/samples
 
 ```py
 bob_breast_study = sparc_fhir_structure["sparc_fhir_breast_dataset"]["sub-bob-breast-1"]
 ```
+
 #### Using pydicom to find header informations for ImagingStudy
 
 Using pydicom to read the a series/sample dicom file header tags, we can get the `Study Instance UID`, `Number of Study Related Instances`, ` Number of Study Related Series`, `Study Time`.
@@ -185,6 +185,7 @@ except:
     for sample in bob_breast_study:
         numberOfInstances += len(sample)
 ```
+
 #### Create Series and Instance Array of ImagingStudy
 
 Because we have a sparc dictionary stucture, we can easily to use `for loop` to create the `Series and Instance Array`. In here we need to use `Series Instance UID`, `SOP Instance UID`, `Instance Number`, `Number of Series Related Instances` tags.
@@ -225,8 +226,8 @@ for sample in bob_breast_study:
 
 As we discussed the `identifier` before, we need use `"urn:dicom:uid"` system to store the `study uid` as the identifier value. Here, we can create two customise identifier for easily mapping the SPARC SDS dataset and FHIR ImagingStudy resource structure. So we can create two local identifier for the SPARC SDS system: `urn:sparc_study:uid` and `urn:sparc_dataset:uid`.
 
-- `urn:sparc_study:uid`: is used to store the unique subject/study folder name in SPARC SDS dataset to ImagingStudy identifier. 
-- `urn:sparc_dataset:uid`: is used to store the unique sparc dataset name to ImagingStudy identifier. 
+- `urn:sparc_study:uid`: is used to store the unique subject/study folder name in SPARC SDS dataset to ImagingStudy identifier.
+- `urn:sparc_dataset:uid`: is used to store the unique sparc dataset name to ImagingStudy identifier.
 
 ```py
 imagingResource = client.resource('ImagingStudy',
@@ -326,7 +327,8 @@ for imagingstudy in imagingStudys:
 # find all breast ImagingStudy resources
 imagingstudys = await client.resources('ImagingStudy').search(bodysite="76752008").fetch_all()
 print(imagingstudys)
-``` 
+```
+
 - Find all `Heart` ImagingStudy resources via `bodysite`.
 
 ```py

@@ -317,6 +317,10 @@ function createDevOpsSidebar() {
               text: "Topic One",
               link: "/docs/devops/azure/azure104/topic_1",
             },
+            {
+              text: "Topic Two",
+              link: "/docs/devops/azure/azure104/topic_2",
+            },
           ],
         },
       ],

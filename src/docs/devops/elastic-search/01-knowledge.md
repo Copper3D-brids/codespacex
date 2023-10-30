@@ -114,6 +114,7 @@ PUT /test
         "index": "false"
       },
       "name":{
+        "type": "object",
         "properties":{
           "firstName":{
             "type":"keyword"
@@ -127,3 +128,61 @@ PUT /test
   }
 }
 ```
+
+### Check Index Library
+
+- syntax for cheching index library
+
+```dsl
+GET /Index_Library_name
+```
+
+- Example
+
+```dsl
+GET /test
+```
+
+### Delete Index Library
+
+- Syntax for deleting index library
+
+```dsl
+DELETE /Index_Library_name
+```
+
+- Example
+
+```dsl
+DELETE /test
+```
+
+### Update Index Library
+
+By default, elasticsearch is forbidden to modify the index database, when the index lirary and mapping created. However, we can add new fields into index library:
+
+```dsl
+PUT /Index_Library_name/_mapping
+{
+  "properties":{
+    "new field name":{
+      "type":"integer"
+    }
+  }
+}
+```
+
+- Example
+
+```dsl
+PUT /test/_mapping
+{
+  "properties":{
+    "age":{
+      "type":"integer"
+    }
+  }
+}
+```
+
+- **Note:** the new field name cannot same as before.
