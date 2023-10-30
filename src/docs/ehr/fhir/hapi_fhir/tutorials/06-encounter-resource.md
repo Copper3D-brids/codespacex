@@ -1,6 +1,6 @@
 # Tutorial - FHIR Encounter Resource
 
-- Tutorial code on GitHub [hapi-py-fhir-tutorials -- schedule.py](https://github.com/Copper3D-brids/hapi-py-fhir-tutorials/blob/main/encounter.py).
+- Tutorial code on GitHub [hapi-py-fhir-tutorials -- encounter.py](https://github.com/Copper3D-brids/hapi-py-fhir-tutorials/blob/main/encounter.py).
 
 - Currently, it is a **private** repository, will open source later...
 
