@@ -235,6 +235,18 @@ function createEHRColumnSidebar() {
                   text: "T-04 Practitioner & Schedule resource",
                   link: "/docs/ehr/fhir/hapi_fhir/tutorials/04-practitioner-schedule-resource",
                 },
+                {
+                  text: "T-05 Appointment resource",
+                  link: "/docs/ehr/fhir/hapi_fhir/tutorials/05-appointment-resource",
+                },
+                {
+                  text: "T-06 Encounter resource",
+                  link: "/docs/ehr/fhir/hapi_fhir/tutorials/06-encounter-resource",
+                },
+                {
+                  text: "T-07 ImagingStudy resource",
+                  link: "/docs/ehr/fhir/hapi_fhir/tutorials/07-imagingstudy-resource",
+                },
               ],
             },
             {

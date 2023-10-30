@@ -1,6 +1,6 @@
 # Tutorial - FHIR Appointment Resource
 
-- Tutorial code on GitHub [hapi-py-fhir-tutorials -- schedule.py](https://github.com/Copper3D-brids/hapi-py-fhir-tutorials/blob/main/appointment.py).
+- Tutorial code on GitHub [hapi-py-fhir-tutorials -- appointment.py](https://github.com/Copper3D-brids/hapi-py-fhir-tutorials/blob/main/appointment.py).
 
 - Currently, it is a **private** repository, will open source later...
 
