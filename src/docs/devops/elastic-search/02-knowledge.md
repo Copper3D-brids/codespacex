@@ -186,3 +186,129 @@ PUT /test/_mapping
 ```
 
 - **Note:** the new field name cannot same as before.
+
+## Document Operator
+
+## Add new documents
+
+- Syntax
+
+```dsl
+POST /Index_library/_doc/document_id
+{
+  "field 1": "value 1",
+  "field 2": "value 2",
+  "field 3": {
+    "sub-field 1": "value 3",
+    "sub-field 2": "value 4"
+  }
+}
+```
+
+- Example
+
+```dsl
+POST /test/_doc/1
+{
+  "info": "This is my first document",
+  "email": "jiuxiaohong@gmail.com",
+  "name": {
+    "firstName": "Xiaohong",
+    "lastName": "Jiu"
+  }
+}
+```
+
+## Check document
+
+- Syntax
+
+```dsl
+GET /Index_library_Name/_doc/document_id
+```
+
+- Example
+
+```dsl
+GET /test/_doc/1
+```
+
+## Delete document
+
+- Syntax
+
+```dsl
+DELETE /Index_library_Name/_doc/document_id
+```
+
+- Example
+
+```dsl
+DELETE /test/_doc/1
+```
+
+## Update document
+
+### Full-scale modification (global modification)
+
+It will delete the old document, then insert new ducoment.
+
+- Syntax
+
+```dsl
+PUT /Index_library_Name/_doc/document_id
+{
+  "field 1": "value 1",
+  "field 2": "value 2",
+}
+```
+
+- Example
+
+```dsl
+PUT /test/_doc/1
+{
+  "info": "This is my first document",
+  "email": "matiao@gmail.com",
+  "name": {
+    "firstName": "Tiao",
+    "lastName": "Ma"
+  }
+}
+```
+
+### Incremental change (local modification)
+
+It need user specify the field.
+
+- Syntax
+
+```dsl
+POST /Index_library_Name/_update/document_id
+{
+  'doc':{
+    "field 1": "new value"
+  }
+}
+```
+
+- Example
+
+```dsl
+POST /test/_update/1
+{
+  'doc':{
+    "email": "matiao@gmail.com"
+  }
+}
+```
+
+## RestClient
+
+### RestClient operate Index library
+
+It is a [client provided by elasticsearc](https://www.elastic.co/guide/en/elasticsearch/client/index.html) used to operate ES. The essence of these clients is to assemble DLS statements and send them to ES via http requests.
+
+- Create index library
+- Delete inde library
+- Checking for the existence of indexed libraries

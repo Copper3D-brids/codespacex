@@ -286,12 +286,16 @@ function createDevOpsSidebar() {
       items: [
         { text: "Usage & Scope", link: "/docs/devops/elastic-search/00-index" },
         {
-          text: "Basic Knowledge",
-          link: "/docs/devops/elastic-search/01-knowledge",
+          text: "Install Elasticsearch",
+          link: "/docs/devops/elastic-search/01-es-install",
         },
         {
-          text: "Install Elasticsearch",
-          link: "/docs/devops/elastic-search/02-es-install",
+          text: "Basic Knowledge",
+          link: "/docs/devops/elastic-search/02-knowledge",
+        },
+        {
+          text: "Projects",
+          link: "/docs/devops/elastic-search/03-project",
         },
       ],
     },
