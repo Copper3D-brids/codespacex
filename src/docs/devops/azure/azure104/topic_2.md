@@ -10,7 +10,7 @@
 
 ## Topic 2
 
-### Role
+### Virtual Network
 
 #### Scenario least privilege role for manage load balancer
 
@@ -39,6 +39,77 @@ Which role should you assign to Admin1 for each task?
 [Reference](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles)
 
 There is something that we all seem to be forgetting here..and that is that Azure RBAC roles can be applied at three different scopes...management group, subscription, resource group and finally resource. So, LB1 and LB2 are resources that we want the Network Contributor role to manage, which by the way satisfies the principle of least privilege. When you apply the scope to the resource group, then it is applied to all the resources in the resource group which is not what we want. The question specifically referred to LB1 and LB2. These resources are atomic, therefore applying the scope to the two will affect just those two resources.
+
+#### Scenario Architecture for point-to-site and site-to-siteVPN
+
+You have an Azure subscription.
+
+Users access the resources in the subscription from either home or from customer sites. From home, users must establish a point-to-site VPN to access the Azure resources. The users on the customer sites access the Azure resources by using site-to-site VPNs.
+
+You have a line-of-business-app named App1 that runs on several Azure virtual machine. The virtual machines run Windows Server 2016.
+
+You need to ensure that the connections to App1 are spread across all the virtual machines.
+
+What are two possible Azure services that you can use? Each correct answer presents a complete solution.
+
+- A. an internal load balancer
+- B. a public load balancer
+- C. an Azure Content Delivery Network (CDN)
+- D. Traffic Manager
+- E. an Azure Application Gateway
+
+**Correct Solution**: A, E
+
+- **Explanation**:
+
+Network traffic from the VPN gateway is routed to the cloud application through an internal load balancer. The load balancer is located in the front-end subnet of the application.
+
+[Reference vpn](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/vpn)
+
+[Reference load-balancer-overview](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview)
+
+[Reference application-gateway](https://docs.microsoft.com/en-us/azure/application-gateway/overview)
+
+A: The customer sites are connected through VPNs, so an internal load balancer is enough.
+
+B: The customer sites are connected through VPNs, so there's no need for a public load balancer, an internal load balancer is enough.
+
+C: A CDN does not provide load balancing for applications, so it not relevant for this situation.
+
+D: Traffic manager is a DNS based solution to direct users' requests to the nearest (typically) instance and does not provide load balancing for this situation.
+
+E: Azure Application Gateway is a valid option, as it provides load balancing in addition to routing and security functions
+
+#### Scenario Move resource to other region
+
+You have an Azure subscription named Subscription1. Subscription1 contains the resource groups in the following table.
+
+| Name | Azure region   | Policy  |
+| ---- | -------------- | ------- |
+| RG1  | West Europe    | Policy1 |
+| RG2  | North Europe   | Policy2 |
+| RG3  | France Central | Policy3 |
+
+RG1 has a web app named WebApp1. WebApp1 is located in West Europe. You move WebApp1 to RG2.
+
+What is the effect of the move?
+
+- A. The App Service plan for WebApp1 remains in West Europe. Policy2 applies to WebApp1.
+- B. The App Service plan for WebApp1 moves to North Europe. Policy2 applies to WebApp1.
+- C. The App Service plan for WebApp1 remains in West Europe. Policy1 applies to WebApp1.
+- D. The App Service plan for WebApp1 moves to North Europe. Policy1 applies to WebApp1.
+
+**Correct Solution**: A
+
+- **Explanation**:
+
+You can move an app to another App Service plan, as long as the source plan and the target plan are in the same resource group and geographical region.
+
+The region in which your app runs is the region of the App Service plan it's in. However, you cannot change an App Service plan's region.
+
+You can only move a resource to a Resource Group or Subscription, but the location stays the same. When you move WebApp1 to RG2, the resource will be restricted based on the policy of the new Resource Group (Policy2).
+
+[Reference app-service-plan-manage](https://docs.microsoft.com/en-us/azure/app-service/app-service-plan-manage)
 
 ### Azure Kubernetes Service (AKS)
 
@@ -391,3 +462,39 @@ After you get your services running, regularly check how much they're costing yo
 3. You can filter by different properties like tags, resource group, and timespan. Click Apply to confirm the filters and Download if you want to export the view to a Comma-Separated Values (.csv) file.
 
 Box 3: Download the usage report
+
+#### Scenario view the error events in Azure Log Analytics workspace
+
+You have an Azure subscription named Subscription1 that contains an Azure Log Analytics workspace named Workspace1.
+
+You need to view the error events from a table named Event.
+
+Which query should you run in Workspace1?
+
+- A. Get-Event Event | where {$\_.EventType == "error"}
+- B. search in (Event) "error"
+- C. select \* from Event where EventType == "error"
+- D. search in (Event) \* | where EventType -eq "error"
+
+**Correct Solution**: B
+
+- **Explanation**:
+
+To search a term in a specific table, add the table-name just after the search operator.
+
+Note:
+
+There are several versions of this question in the exam. The question has three possible correct answers:
+
+1. Event|search "error"
+2. Event|where EventType == "error"
+3. search in (Event) "error"
+
+Other incorrect answer options you may see on the exam include the following:
+
+1. Get-Event Event | where {$\_.EventTye ג€"eq "error"}
+2. Event | where EventType is "error"
+3. search in (Event) \* | where EventType ג€"eq "error"
+4. select \* from Event where EventType is "error"
+
+[Reference search-queries](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/search-queries)
