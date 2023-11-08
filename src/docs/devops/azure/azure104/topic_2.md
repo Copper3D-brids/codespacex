@@ -381,6 +381,55 @@ You need to provide the Developers group with the ability to create Azure logic 
 
   [Reference logic-apps](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-securing-a-logic-app)
 
+#### Scenario MFA config
+
+You have an Azure Active Directory (Azure AD) tenant.
+You need to create a conditional access policy that requires all users to use multi-factor authentication when they access the Azure portal.
+Which three settings should you configure?
+
+Assignments:
+
+- A. Users and groups
+- B. Cloud apps
+- C. Conditions
+
+Access controls:
+
+- A. Grant
+- B. Session
+
+**Correct Solution**: Users and groups + Cloud apps + Grant
+
+- **Explanation**:
+
+  - Select Users & Groups : Where you have to choose all users.
+  - Select Cloud apps or actions: to specify the Azure portal
+  - Grant: to grant the MFA.
+
+Those are the minimum requirements to create MFA policy. No conditions are required in the question.
+
+[Reference concept-conditional-access-policies](https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/concept-conditional-access-policies)
+
+#### Scenario Enable external partner invitation
+
+You have an Azure Active Directory (Azure AD) tenant named contoso.onmicrosoft.com.
+The User administrator role is assigned to a user named Admin1.
+An external partner has a Microsoft account that uses the user1@outlook.com sign in.
+Admin1 attempts to invite the external partner to sign in to the Azure AD tenant and receives the following error message: `Unable to invite user user1@outlook.com `" Generic authorization exception.`
+You need to ensure that Admin1 can invite the external partner to sign in to the Azure AD tenant.
+What should you do?
+
+- A. From the users settings blade, modify the External collaboration settings.
+- B. From the Custom domain names blade, add a custom domain.
+- C. From the Organizational relationships blade, add an identity provider.
+- D. From the Roles and administrators blade, assign the Security administrator role to Admin1.
+
+**Correct Solution**: A
+
+- **Explanation**:
+  Go to Azure AD--users--user settings --scroll down.--External users
+  Manage external collaboration settings
+
 ### Azure Virtual Network
 
 #### Scenario assign the Reader role
@@ -424,6 +473,26 @@ Other incorrect answer options you may see on the exam include the following:
 ✑ Remove User1 from the Security Reader role for Subscription1. Assign User1 the Contributor role for RG1.
 
 [Reference role-based-access-control](https://docs.microsoft.com/en-us/azure/role-based-access-control/overview)
+
+#### Scenario Which role can assign a policy?
+
+You have an Azure subscription linked to an Azure Active Directory tenant. The tenant includes a user account named User1.
+You need to ensure that User1 can assign a policy to the tenant root management group.
+What should you do?
+
+- A. Assign the Owner role for the Azure Subscription to User1, and then modify the default conditional access policies.
+- B. Assign the Owner role for the Azure subscription to User1, and then instruct User1 to configure access management for Azure resources.
+- C. Assign the Global administrator role to User1, and then instruct User1 to configure access management for Azure resources. Most Voted
+- D. Create a new management group and delegate User1 as the owner of the new management group.
+
+**Correct Solution**: C
+
+- **Explanation**:
+  No one is given default access to the root management group. Azure AD Global Administrators are the only users that can elevate themselves to gain access. Once they have access to the root management group, the global administrators can assign any Azure role to other users to manage it.
+
+  [Reference important-facts-about-the-root-management-group](https://docs.microsoft.com/en-us/azure/governance/management-groups/overview#important-facts-about-the-root-management-group)
+
+  [Reference management-groups](https://docs.microsoft.com/en-us/azure/governance/management-groups/overview)
 
 ### Azure Analysis
 
@@ -498,3 +567,21 @@ Other incorrect answer options you may see on the exam include the following:
 4. select \* from Event where EventType is "error"
 
 [Reference search-queries](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/search-queries)
+
+#### Scenario Advisor for managing cost
+
+You have an Azure subscription. You have 100 Azure virtual machines. You need to quickly identify underutilized virtual machines that can have their service tier changed to a less expensive offering.
+
+Which blade should you use?
+
+- A. Monitor
+- B. Advisor
+- C. Metrics
+- D. Customer insights
+
+**Correct Solution**: B
+
+- **Explanation**:
+  Advisor helps you optimize and reduce your overall Azure spend by identifying idle and underutilized resources. You can get cost recommendations from the Cost tab on the Advisor dashboard.
+
+  [Reference advisor-cost-recommendations](https://docs.microsoft.com/en-us/azure/advisor/advisor-cost-recommendations)
