@@ -45,3 +45,23 @@ git config --global user.name "Your Name"
 git config --global user.email you@example.com
 git commit --amend --reset-author
 ```
+
+## Change the remote url
+
+- Syntax
+
+```sh
+git remote set-url <remote_name> <remote_url>
+```
+
+- Example for Edit origin url
+
+```sh
+git remote set-url origin https://git-repo/new-repository.git
+```
+
+- Check local remote
+
+```sh
+git remote -v
+```
