@@ -2,7 +2,7 @@
 
 ## Documentation
 
-- [Azure 104 exam](https://www.examtopics.com/exams/microsoft/az-104/view/7/)
+- [Azure 104 exam](https://www.examtopics.com/exams/microsoft/az-104/view/8/)
 
 - [Azure docs](https://learn.microsoft.com/en-us/azure/?product=popular)
 
