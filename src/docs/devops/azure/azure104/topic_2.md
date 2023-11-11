@@ -2,7 +2,7 @@
 
 ## Documentation
 
-- [Azure 104 exam](https://www.examtopics.com/exams/microsoft/az-104/view/)
+- [Azure 104 exam](https://www.examtopics.com/exams/microsoft/az-104/view/8/)
 
 - [Azure docs](https://learn.microsoft.com/en-us/azure/?product=popular)
 
@@ -12,33 +12,26 @@
 
 ### Virtual Network
 
-#### Scenario least privilege role for manage load balancer
+#### Scenario delegate DNS subdomain
 
-You have an Azure subscription named Subscription1 that contains a resource group named RG1. In RG1, you create an internal load balancer named LB1 and a public load balancer named LB2. You need to ensure that an administrator named Admin1 can manage LB1 and LB2. The solution must follow the principle of least privilege.
+You have an Azure DNS zone named adatum.com.
 
-Which role should you assign to Admin1 for each task?
+You need to delegate a subdomain named research.adatum.com to a different DNS server in Azure.
 
-- Task 1: To add a backend pool to LB1:
-  - A. Contributor on LB1
-  - B. Network Contributor on LB1
-  - C. Network Contributor on RG1
-  - D. Owner on LB1
-- Task 2: To add a health probe to LB2:
-  - A. Contributor on LB2
-  - B. Network Contributor on LB2
-  - C. Network Contributor on RG1
-  - D. Owner on LB2
+What should you do?
 
-**Correct Solution**:
+- A. Create an NS record named research in the adatum.com zone.
+- B. Create a PTR record named research in the adatum.com zone.
+- C. Modify the SOA record of adatum.com
+- D. Create an A record named \*.research in the adatum.com zone.
 
-- Task 1: Network Contributor on LB1.
-- Task 2: Network Contributor on LB2.
+**Correct Solution**: A
 
 - **Explanation**:
 
-[Reference](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles)
+An NS record or (name server record) tells recursive name servers which name servers are authoritative for a zone. You can have as many NS records as you would like in your zone file. The benefit of having multiple NS records is the redundancy of your DNS service.
 
-There is something that we all seem to be forgetting here..and that is that Azure RBAC roles can be applied at three different scopes...management group, subscription, resource group and finally resource. So, LB1 and LB2 are resources that we want the Network Contributor role to manage, which by the way satisfies the principle of least privilege. When you apply the scope to the resource group, then it is applied to all the resources in the resource group which is not what we want. The question specifically referred to LB1 and LB2. These resources are atomic, therefore applying the scope to the two will affect just those two resources.
+You need to create a name server (NS) record for the zone. The A record is used for test. [Reference delegate-subdomain](https://docs.microsoft.com/en-us/azure/dns/delegate-subdomain)
 
 #### Scenario Architecture for point-to-site and site-to-siteVPN
 
@@ -111,7 +104,96 @@ You can only move a resource to a Resource Group or Subscription, but the locati
 
 [Reference app-service-plan-manage](https://docs.microsoft.com/en-us/azure/app-service/app-service-plan-manage)
 
-### Azure Kubernetes Service (AKS)
+### Azure AD
+
+Azure role-based access control (RBAC) and Azure AD roles are independent. AD roles do not grant access to resources and Azure roles do not grant access to Azure AD. However, a Global Administrator in AD can elevate access to all subscriptions and will be User Access Administrator in Azure root scope.
+
+[Reference Azure roles, Microsoft Entra roles, and classic subscription administrator roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles)
+
+#### Scenario Allow VM to manage resources
+
+You have an Azure subscription named Subscription1 that contains an Azure virtual machine named VM1. VM1 is in a resource group named RG1.
+
+VM1 runs services that will be used to deploy resources to RG1. You need to ensure that a service running on VM1 can manage the resources in RG1 by using the identity of VM1.
+
+What should you do first?
+
+- A. From the Azure portal, modify the Managed Identity settings of VM1.
+- B. From the Azure portal, modify the Access control (IAM) settings of RG1.
+- C. From the Azure portal, modify the Access control (IAM) settings of VM1.
+- D. From the Azure portal, modify the Policies settings of RG1.
+
+**Correct Solution**: A
+
+- **Explanation**:
+  Managed identites for Azure resources provides Azure services with an automatically managed identity in Azure Active Directory. You can use this identity to authenticate to any service that supports Azure AD authentication, without having credentials in your code. You can enable and disable the system-assigned managed identity for VM using the Azure portal.
+
+  RBAC manages who has access to Azure resources, what areas they have access to and what they can do with those resources. Examples of Role Based Access Control (RBAC) include: Allowing an app to access all resources in a resource group Policies on the other hand focus on resource properties during deployment and for already existing resources. As an example, a policy can be issued to ensure users can only deploy DS series VMs within a specified resource.
+
+  [Reference qs-configure-portal-windows-vm](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm)
+
+#### Scenario Role for enable Traffic Analytics
+
+You need to ensure that an Azure Active Directory (Azure AD) user named Admin1 is assigned the required role to enable Traffic Analytics for an Azure subscription.
+
+**Correct Solution**:
+
+- A: You assign the Network Contributor role at the subscription level to Admin1.
+
+- B: You assign the Onwer role at the subscription level to Admin1.
+
+**Wrong Solution**:
+
+- A: You assign the Reader role at the subscription level to Admin1.
+
+  - **Explanation**:
+    The role should be built for Traffic Analytics: Owner, Contributor, Network Contributor or Monitoring Contributor. [Reference Traffic Analytics](https://learn.microsoft.com/en-us/azure/network-watcher/traffic-analytics)
+
+    Contributor: Grants full access to manage all resources, but does not allow you to assign roles in Azure RBAC, manage assignments in Azure Blueprints, or share image galleries.
+
+    Ower: Grants full access to manage all resources, including the ability to assign roles in Azure RBAC.
+
+    Reader: View all resources, but does not allow you to make any changes.
+
+    [Reference built-in-roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles)
+
+#### Scenario Modify the JobTitle and UsageLocation attributes
+
+You have a hybrid deployment of Azure Active Directory (Azure AD) that contains the users shown in the following table.
+
+| Name  | Type   | Source                          |
+| ----- | ------ | ------------------------------- |
+| User1 | Member | Azure AD                        |
+| User2 | Member | Windows Server Active Directory |
+| User3 | Guest  | MicroSoft Account               |
+
+You need to modify the JobTitle and UsageLocation attributes for the users.
+
+For which users can you modify the attributes from Azure AD?
+
+- JobTitle:
+  - A. User1 only
+  - B. User1 and User2 only
+  - C. User1 and User3 only
+  - D. User1, User2, and User3
+- UsageLocation:
+  - A. User1 only
+  - B. User1 and User2 only
+  - C. User1 and User3 only
+  - D. User1, User2, and User3
+
+**Correct Solution**: JobTitle: User1 and User3 only, UsageLocation: User1, User2, and User3.
+
+- **Explanation**:
+  JobTitle: User1 and User3 only.
+
+  You must use Windows Server Active Directory to update the identity, contact info, or job info for users whose source of authority is Windows Server Active Directory.
+
+  UsageLocation: User1, User2, and User3.
+
+  Usage location is an Azure property that can only be modified from Azure AD (for all users including Windows Server Active Dirctory users synced via Azure AD Connect).
+
+  [Reference active-directory-users-profile-azure-portal](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-users-profile-azure-portal)
 
 #### Scenario Azure AD with AKS
 
@@ -138,9 +220,35 @@ Cluster administrators can configure Kubernetes role-based access control (Kuber
 
 [Reference Kubernetes Authentication](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
 
-### Microsoft 365
+#### Scenario least privilege role for manage load balancer
 
-#### Microsoft 365 and Azure Active Directory
+You have an Azure subscription named Subscription1 that contains a resource group named RG1. In RG1, you create an internal load balancer named LB1 and a public load balancer named LB2. You need to ensure that an administrator named Admin1 can manage LB1 and LB2. The solution must follow the principle of least privilege.
+
+Which role should you assign to Admin1 for each task?
+
+- Task 1: To add a backend pool to LB1:
+  - A. Contributor on LB1
+  - B. Network Contributor on LB1
+  - C. Network Contributor on RG1
+  - D. Owner on LB1
+- Task 2: To add a health probe to LB2:
+  - A. Contributor on LB2
+  - B. Network Contributor on LB2
+  - C. Network Contributor on RG1
+  - D. Owner on LB2
+
+**Correct Solution**:
+
+- Task 1: Network Contributor on LB1.
+- Task 2: Network Contributor on LB2.
+
+- **Explanation**:
+
+[Reference](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles)
+
+There is something that we all seem to be forgetting here..and that is that Azure RBAC roles can be applied at three different scopes...management group, subscription, resource group and finally resource. So, LB1 and LB2 are resources that we want the Network Contributor role to manage, which by the way satisfies the principle of least privilege. When you apply the scope to the resource group, then it is applied to all the resources in the resource group which is not what we want. The question specifically referred to LB1 and LB2. These resources are atomic, therefore applying the scope to the two will affect just those two resources.
+
+#### Scenario Microsoft 365 and Azure Active Directory
 
 You have a Microsoft 365 tenant and an Azure Active Directory (Azure AD) tenant named contoso.com. You plan to grant three users named User1, User2, and User3 access to a temporary Microsoft SharePoint document library named Library1. You need to create groups for the users. The solution must ensure that the groups are deleted automatically after 180 days.
 
@@ -163,8 +271,6 @@ Note: With the increse in usage of Office 365 groups, administrations and users 
 When a group expires, all of its associated services (the mailbox, Planner, SharePoint site, etc.) are also deleted. You can set up a rule for dynamic membership on security groups or Office 365 groups.
 
 [Reference office 365 groups expiration policy](https://docs.microsoft.com/en-us/office365/admin/create-groups/office-365-groups-expiration-policy?view=o365-worldwide)
-
-### Azure AD
 
 #### Scenario move resource
 
