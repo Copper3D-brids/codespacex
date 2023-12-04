@@ -2,7 +2,7 @@
 
 ## Documentation
 
-- [Azure 104 exam](https://www.examtopics.com/exams/microsoft/az-104/view/8/)
+- [Azure 104 exam](https://www.examtopics.com/exams/microsoft/az-104/view/10/)
 
 - [Azure docs](https://learn.microsoft.com/en-us/azure/?product=popular)
 
@@ -11,6 +11,65 @@
 ## Topic 2
 
 ### Virtual Network
+
+#### Scenario User rights for manage VNet
+
+You have an Azure subscripyion named Subscription1 that contains a virtual network VNet1.
+
+You add the users in the following table.
+
+| User  | Role                |
+|-------|---------------------|
+| User1 | Owner               |
+| User2 | Security Admin      |
+| User3 | Network Contributor |
+
+Which user can perform each configuration?
+- Add a subnet to VNet1:
+  - A. User1 only
+  - B. User3 only
+  - C. User1 and User3 only
+  - D. User2 and User3 only
+  - E. User1, User2, and User3
+- Assign a user the Reader role to VNet1:
+  - A. User1 only
+  - B. User2 only
+  - C. User3 only
+  - D. User1 and User2 only
+  - E. User2 and User3 only
+  - F. User1, User2, and User3
+
+**Correct Solution**:
+
+- Add a subnet to VNet1: C
+- Assign a user the Reader role to VNet1: A
+
+- **Explanation**:
+User1: The Owner Role lets you manage everything, including access to resources.
+User3: The Network Contributor role lets you manage networks, including creating subnets.
+Box 2: User1 only.
+The Security Admin role: In Security Center only: Can view security policies, view security states, edit security policies, view alerts and recommendations, dismiss alerts and recommendations. [Reference built-in-roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) [Reference microsoftnetwork](https://docs.microsoft.com/en-us/azure/role-based-access-control/resource-provider-operations#microsoftnetwork)
+
+#### Scenario delegate custom domain to Auzre DNS
+
+You have a registered DNS domain named contoso.com.
+
+You create a public Azure DNS zone named contoso.com.
+
+You need to ensure that records created in the contoso.com zone are resolvable from the internet.
+
+What should you do?
+
+- A. Create NS records in contoso.com
+- B. Modify the SOA record in the DNS domain registrar.
+- C. Create the SOA record in contoso.com.
+- D. Modify the NS records in the DNS domain registrar.
+
+**Correct Solution**: D
+
+- **Explanation**: 
+
+Registrar “owns” the Top level Domain and will have their NS registered against the domain by default. By changing the registrar NS records to point to your Azure DNS NS records you take ownership into your Azure DNS. [Reference for dns-delegate-domain-azure-dns](https://docs.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns)
 
 #### Scenario delegate DNS subdomain
 
@@ -109,6 +168,48 @@ You can only move a resource to a Resource Group or Subscription, but the locati
 Azure role-based access control (RBAC) and Azure AD roles are independent. AD roles do not grant access to resources and Azure roles do not grant access to Azure AD. However, a Global Administrator in AD can elevate access to all subscriptions and will be User Access Administrator in Azure root scope.
 
 [Reference Azure roles, Microsoft Entra roles, and classic subscription administrator roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles)
+
+#### Scenario Grant permissions for local administrator
+You have three offices and an Azure subscription that contains an Azure Active Directory (Azure AD) tenant.
+You need to grant user management permissions to a local administrator in each office.
+What should you use?
+
+- A. Azure AD roles
+- B. administrative units
+- C. access packages in Azure AD entitlement management
+- D. Azure roles
+
+**Correct Solution**: B
+
+- **Explanation**:
+Administrative units restrict permissions in a role to any portion of your organization that you define. You could, for example, use administrative units to delegate the Helpdesk Administrator role to regional support specialists, so they can manage users only in the region that they support.
+
+Administrative units in Azure AD allow you to organize and delegate administrative tasks to specific administrative units. You can assign specific permissions and roles to administrators based on these units. This approach allows local administrators to have control over users and resources within their respective offices without having full global permissions. It's a more granular and decentralized approach to user management.
+
+Azure AD roles (Option A) typically deal with assigning permissions at a broader level, and they might not provide the necessary granularity for managing users within specific offices.
+
+Access packages in Azure AD entitlement management (Option C) are used for granting access to resources and applications rather than delegating user management tasks.
+
+Azure roles (Option D) are primarily focused on managing permissions for Azure resources and services, not user management within Azure AD.
+
+[Reference administrative-units](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/administrative-units)
+
+#### Scenario Delete multiple users by using Bulk
+You have an Azure Active Directory (Azure AD) tenant.
+You plan to delete multiple users by using Bulk delete in the Azure Active Directory admin center.
+You need to create and upload a file for the bulk delete.
+Which user attributes should you include in the file?
+
+- A. The user principal name and usage location of each user only
+- B. The user principal name of each user only
+- C. The display name of each user only
+- D. The display name and usage location of each user only
+- E. The display name and user principal name of each user only
+
+**Correct Solution**: B
+
+- **Explanation**:
+[Reference users-bulk-delete](https://docs.microsoft.com/en-us/azure/active-directory/enterprise-users/users-bulk-delete)
 
 #### Scenario Allow VM to manage resources
 
@@ -601,6 +702,22 @@ What should you do?
   [Reference management-groups](https://docs.microsoft.com/en-us/azure/governance/management-groups/overview)
 
 ### Azure Analysis
+
+#### Scenario Assign a role for manage Traffic Analytics
+You need to ensure that an Azure Active Directory (Azure AD) user named Admin1 is assigned the required role to enable Traffic Analytics for an Azure subscription.
+
+**Correct Solution**:
+- A: Assign Network Contributor role at subscription level to Admin1
+- B: Assign Owner role at subscription level to Admin1
+- C: Assign Reader role at subscription level to Admin1
+
+
+**Wrong Solution**:
+
+- A: You assign the Traffic Manager Contributor role at the subscription level to Admin1.
+
+  - **Explanation**:
+    [Reference traffic-analytics-faq](https://docs.microsoft.com/en-us/azure/network-watcher/traffic-analytics-faq)
 
 #### Scenario cost analysis
 
