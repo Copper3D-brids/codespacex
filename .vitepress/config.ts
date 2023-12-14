@@ -247,6 +247,10 @@ function createEHRColumnSidebar() {
                   text: "T-07 ImagingStudy resource",
                   link: "/docs/ehr/fhir/hapi_fhir/tutorials/07-imagingstudy-resource",
                 },
+                {
+                  text: "T-08 ImagingStudy Duke EHR",
+                  link: "/docs/ehr/fhir/hapi_fhir/tutorials/08-imagingstudy-ehr",
+                },
               ],
             },
             {
