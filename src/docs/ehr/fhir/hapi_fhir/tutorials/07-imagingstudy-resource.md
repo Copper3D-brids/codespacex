@@ -1,4 +1,4 @@
-# Tutorial - FHIR Encounter Resource
+# Tutorial - FHIR ImagingStudy Resource
 
 - Tutorial code on GitHub [hapi-py-fhir-tutorials -- imagingStudyOperator.py](https://github.com/Copper3D-brids/hapi-py-fhir-tutorials/blob/main/imagingStudyOperator.py).
 
@@ -8,7 +8,7 @@
 
 ### Scenario
 
-Volunteers Aniyah and Linman recently had breast and heart MRIs taken at the Akron Hospital.The researcher at BioResearch Institute A stored the collected MRI data in SPARC SDS datasets. As shown in the figure below, the researcher stored Aniyah and Linman's breast MRIs under the `primary` folder in the breast dataset, respectively.
+Volunteers Aniyah and Linman recently had breast and heart MRIs taken at the Akron Hospital.The researcher at BioResearch Institute stored the collected MRI data in SPARC SDS datasets. As shown in the figure below, the researcher stored Aniyah and Linman's breast MRIs under the `primary` folder in the breast dataset, respectively.
 
 ![sparc imagingstudy relationship](/fhir/01-fhir-resources/04-sparc-imagingstudy-relationship.png)
 
