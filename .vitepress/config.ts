@@ -247,7 +247,21 @@ function createEHRColumnSidebar() {
                   text: "T-07 ImagingStudy resource",
                   link: "/docs/ehr/fhir/hapi_fhir/tutorials/07-imagingstudy-resource",
                 },
+                {
+                  text: "T-08 ImagingStudy Duke EHR",
+                  link: "/docs/ehr/fhir/hapi_fhir/tutorials/08-imagingstudy-ehr",
+                },
               ],
+            },
+            {
+              text: "Hapi Implementation Guide",
+              link: "/docs/ehr/fhir/fhir-ig/01-fhir-mcode",
+              items: [
+                {
+                  text: "mCODE Implementation Guide",
+                  link: "/docs/ehr/fhir/fhir-ig/01-fhir-mcode",
+                },
+              ]
             },
             {
               text: "OMOP on FHIR",
