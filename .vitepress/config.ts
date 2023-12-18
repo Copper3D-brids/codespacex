@@ -254,6 +254,16 @@ function createEHRColumnSidebar() {
               ],
             },
             {
+              text: "Hapi Implementation Guide",
+              link: "/docs/ehr/fhir/fhir-ig/01-fhir-mcode",
+              items: [
+                {
+                  text: "mCODE Implementation Guide",
+                  link: "/docs/ehr/fhir/fhir-ig/01-fhir-mcode",
+                },
+              ]
+            },
+            {
               text: "OMOP on FHIR",
               link: "/docs/ehr/fhir/03-fhir-omop",
             },
