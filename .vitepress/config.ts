@@ -255,11 +255,15 @@ function createEHRColumnSidebar() {
             },
             {
               text: "Hapi Implementation Guide",
-              link: "/docs/ehr/fhir/fhir-ig/01-fhir-mcode",
+              link: "/docs/ehr/fhir/fhir-ig/01-fhir-ig",
               items: [
                 {
+                  text: "FHIR Implementation Guide & Package",
+                  link: "/docs/ehr/fhir/fhir-ig/01-fhir-ig",
+                },
+                {
                   text: "mCODE Implementation Guide",
-                  link: "/docs/ehr/fhir/fhir-ig/01-fhir-mcode",
+                  link: "/docs/ehr/fhir/fhir-ig/02-fhir-mcode",
                 },
               ]
             },
