@@ -2,12 +2,28 @@
 
 ## How to create a FHIR IG
 
+### Workflow for building a FHIR Spec
+
+![image](/fhir/02-fhir-ig/02-fhir-spec.png)
+
+- [Download Forge](https://simplifier.net/downloads/forge)
+
+#### FHIR Ecosystem
+
+![image](/fhir/02-fhir-ig/03-fhir-eco.png)
+
+
+##### FHIR EcoSys Details - Firely suite of products
+
+![image](/fhir/02-fhir-ig/04-fhir-eco-details.png)
+
 ### Useful guides
 
 - [IG Publisher Documentation](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation)
 - [Simple IG Template GitHub](https://github.com/FHIR/sample-ig)
 - [IG Template FHIR GitHub](https://github.com/HL7/ig-template-fhir/tree/master)
 - [Guidance for FHIR IG Creation](https://build.fhir.org/ig/FHIR/ig-guidance/index.html)
+- [Let's Build a FHIR Spec - Simplifier.net by Firely](https://simplifier.net/letsbuildafhirspec-simplifier.netbyfirely)
 
 ### Create a template from Simplifier.net
 
@@ -16,6 +32,7 @@
 - Click `Creat Your First Project`
 - [Video for build an IG](https://www.google.com/search?q=how+to+use+Simplifier.net+to+create+a+project%3F&rlz=1C1GCEA_enNZ995NZ995&oq=how+to+use+Simplifier.net+to+create+a+project%3F&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigAdIBCjIwMTkyajBqMTWoAgCwAgA&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:2a8dfac5,vid:ESGPNwyXx_s,st:0)
 - [Video for build package](https://www.youtube.com/watch?v=ItpBlnldMPo)
+- [Video for Forge and Simplifier](https://www.youtube.com/watch?v=nF3DZ26ckVI)
 
 ## What the relationship between FHIR IG and FHIR Package?
 
@@ -25,7 +42,11 @@ After we built our own fhir package we can register it to [HL7 FHIR PACKAGE REGI
 
 However, there is an issue, you maybe noticed. Where the documentations of the package? For example, when we create a python package, we also need to write a user documentation for it, this is because when we publish it for others to use, we need to provide a clear guides/examples for other users to use our package. So, the `FHIR Implementation Guide` comes out, we can write a clear documentation for our FHIR package based on FHIR offical principle.
 
-We can find a template of FHIR Implemetation Guide on [Simple IG Template GitHub](https://github.com/FHIR/sample-ig), [IG Template FHIR GitHub](https://github.com/HL7/ig-template-fhir/tree/master), or [Simplifier.net](https://simplifier.net/) etc. The easiest way is using [Simplifier.net](https://simplifier.net/), it provides functions for us to build the package and FHIR IG via fhirly template.
+We can find a template of FHIR Implemetation Guide on [Simple IG Template GitHub](https://github.com/FHIR/sample-ig), [IG Template FHIR GitHub](https://github.com/HL7/ig-template-fhir/tree/master), or [Simplifier.net](https://simplifier.net/) etc. The easiest way is using [Simplifier.net](https://simplifier.net/), it provides functions for us to build the package and FHIR IG via fhirly template. And the Simplifier.net also provide the software -  `Forage` for us to create our resources, we can load our resources from `Forage` to Simplifier.net website to create our FHIR IG and package.
+
+### Why Simplifier and Forage?
+- Make FHIR development easier, so everyone can help.
+- Provide governance across multiple FHIR projects.
 
 
 ## How to using FHIR registry Package in FHIR server (Hapi FHIR Server)
