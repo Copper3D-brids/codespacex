@@ -6,8 +6,6 @@
 
 ![image](/fhir/02-fhir-ig/02-fhir-spec.png)
 
-- [Download Forge](https://simplifier.net/downloads/forge)
-
 #### FHIR Ecosystem
 
 ![image](/fhir/02-fhir-ig/03-fhir-eco.png)
@@ -42,11 +40,20 @@ After we built our own fhir package we can register it to [HL7 FHIR PACKAGE REGI
 
 However, there is an issue, you maybe noticed. Where the documentations of the package? For example, when we create a python package, we also need to write a user documentation for it, this is because when we publish it for others to use, we need to provide a clear guides/examples for other users to use our package. So, the `FHIR Implementation Guide` comes out, we can write a clear documentation for our FHIR package based on FHIR offical principle.
 
-We can find a template of FHIR Implemetation Guide on [Simple IG Template GitHub](https://github.com/FHIR/sample-ig), [IG Template FHIR GitHub](https://github.com/HL7/ig-template-fhir/tree/master), or [Simplifier.net](https://simplifier.net/) etc. The easiest way is using [Simplifier.net](https://simplifier.net/), it provides functions for us to build the package and FHIR IG via fhirly template. And the Simplifier.net also provide the software -  `Forage` for us to create our resources, we can load our resources from `Forage` to Simplifier.net website to create our FHIR IG and package.
+We can find a template of FHIR Implemetation Guide on [Simple IG Template GitHub](https://github.com/FHIR/sample-ig), [IG Template FHIR GitHub](https://github.com/HL7/ig-template-fhir/tree/master), or [Simplifier.net](https://simplifier.net/) etc. The easiest way is using [Simplifier.net](https://simplifier.net/), it provides functions for us to build the package and FHIR IG via fhirly template. And the Simplifier.net also provide the software -  `Forge` for us to create our resources, we can load our resources from `Forge` to Simplifier.net website to create our FHIR IG and package.
 
-### Why Simplifier and Forage?
-- Make FHIR development easier, so everyone can help.
+### Why Simplifier and Forge?
+- Make FHIR development easier, so everyone in a team can help.
 - Provide governance across multiple FHIR projects.
+
+- Simplifier works with all FHIR tools, bringing governance to all.
+
+![image](/fhir/02-fhir-ig/05-fhir-eco-tools.png)
+
+  - [Simplifier FSH playground](https://simplifier.net/fsh)
+  - [Simplifier Forge](https://simplifier.net/forge)
+  - [Forge documentation](https://docs.fire.ly/projects/Forge/)
+
 
 
 ## How to using FHIR registry Package in FHIR server (Hapi FHIR Server)
