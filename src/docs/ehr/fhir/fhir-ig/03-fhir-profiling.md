@@ -48,3 +48,39 @@ It is not possible to make mandatory fields optional, or change singular fields 
 
 Another common constraint is to fix a value for a field. You can use fixed values to specify a value that SHALL be exactly the value presented in the data. For example, in the profile for the blood pressure Observation, you could fix the value of the code field to the LOINC code that represents a blood pressure measurement. When fixing a value for a complex data type, such as CodeableConcept, we recommend to fix it on the lowest possible place in the hierarchy of that complex structure. This allows for more flexbility in the data values for the other fields of that structure.
 
+### Exercise 1: create first profile
+
+The Alpha Hospital wants to receive FHIR patient data from general practitioners. First, only administrative data of patients and their general practitioner are included. After some meetings the following requirements are specified.
+
+                                                  
+|                                                  |
+|--------------------------------------------------|
+| A patient has at least 1 family and 1 given name |
+| Date of birth is mandatory                       |
+| Only home addresses can be used                  |
+
+- In Forge, select `New...` in the project window. This will show you the resource types that are available to create profiles on.
+- Select the Patient resource type.
+- Make sure to change the name and the canonical URL before you click "OK".
+- The Patient resource structure will be rendered in the middle window. Click on a field in the structure to see the field details in the window on the right. Among others, you can see the cardinality, and there are buttons to change it.
+- Use cardinality changes to reflect the requirments specified above.
+- One of the requirements needs a fixed value. Click on the relevant field, and find the fixed value setting in the window on the right. Set a value by typing it into the text box.
+- Save your profile.
+
+![image](/fhir/02-fhir-ig/fhir-profiling/01-case1-create-proflie.png)
+
+## Publishing your work
+
+Your profiles form the base of your project. Togiether with other conformance resources, example resource instances and documentation, they make it clear how FHIR is used for your case or context. One of the reasons the StructureDefinition was added to the FHIR specification, is that you can easily share it with others to show what you expect from the data.
+
+Once you have shard your profiles, others will be able to find the structures you have published and will be able to use them. Since they are in a computable format, they can be used for things like validating data or generating user interfaces.
+
+### Publication platform
+
+WHile it would be nice if a conformance resource can be retrieved by simply entering its canonical URL into a browser, not all organizations can or want to setup and maintain a server that can responds to such requests. For that reason, the [Simplifier.net](https://simplifier.net/) platform was created. On the Simplifier.net registry, you can create a project and publish your conformance resources, so others will be able to find them.
+
+When you have used the Forge tool to author your profiles, it will be very easy to publish your work thanks to the integration of Forge with Simplifiler. But also when your StructureDefinitions are created by other means, for example with `FHIR Shorthand (FSH)` and `Sushi`, it is possible to upload them to your Simplifier project with just a couple of clicks.
+
+### Example data
+
+One of the things that will help others to use your profile correctly, is having a set of example resource instances. For each profile you create, try and create one or two good examples of resources that conform to your profile.
