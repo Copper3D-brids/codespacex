@@ -166,3 +166,164 @@ Another option is to use the Simplifier editor:
 - Follow the previous steps to try and validate again.
 
 **Note that with this option you will need to synchronize the resource back to your filesystem if you want to keep your local folder up to date with the Simplifier project.**
+
+## Adding an implementation guide
+
+### The need for an Implementation Guide
+
+With your profiles, you define a set of context specific conformance rules. This will help make it clear what you expect the data to look like when it is exchanged in the context of your use case. However, the user of your profiles might also need to know more. For example, they may be interested in the reason behind yopur requirements, how the profiles interact, and what kind of exchanges need to be supported.
+
+Implementation Guides - or IGs - are the way to supply the user with this kind of documentation. They:
+- make it clear how FHIR is used for your use case or context.
+- specify how to use FHIR resources by linking to the profiles
+- provide extra documentation around the project.
+
+In other words, they tell you what to do ro `get it right`.
+
+### Scope and format
+Implementation guides can be written as documents (e.g. PDF) or webpages (e.g. a wiki page, a page on Simplifier.net or your own webpage). Webpages are preferred over documents when publishing, because it is easier to link to them if you have dependencies between guides.
+
+The scope of your implementation guide depends on the scope of your project. In general, we define the following scopes for them:
+
+<table>
+    <tr><td>Scope</td><td>Description</td><td>Example(s)</td></tr>
+    <tr>
+        <td>Strategy</td>
+        <td>A nationally scoped guide that provides a general overview and the strategic choices that are made. For example it describes the national infrastructure, security and privacy requirements. This guide will often be referenced by more specific guides.</td>
+        <td><a href="https://nhsconnect.github.io/CareConnectAPI/index.html" target="_blank">INTEROPen Care Connect API</a>, <a href="https://medmij.nl/medmij-afsprakenstelsel/" target="_blank">MedMij Afsprakenstelsel</a></td>
+    </tr>
+    <tr>
+        <td>Guiding principles</td>
+        <td>A guide that describes overarching guiding principles, such as regulations and basic components. This guide often serves as a foundation for future IGs.</td>
+        <td><a href="https://www.hl7.org/fhir/us/core/" target="_blank">US Core</a>, <a href="https://simplifier.net/guide/leitfaden-de-basis-r4?version=current" target="_blank">Leitfaden Basis DE</a></td>
+    </tr>
+    <tr>
+        <td>Subject</td>
+        <td>A guide that describes one subject. This guide describes multiple use cases and scenarios that are all related to this subject. For example, the subject could be medication or the IHE technical framework.</td>
+        <td><a href="https://simplifier.net/guide/labdatafromehrstoregistrieswithfhir?version=current" target="_blank">Lab Data from EHR to registries</a></td>
+    </tr>
+    <tr>
+        <td>Use case</td>
+        <td>A guide describing a single use case and its interactions, data structures, vocabulary and testing. Examples of use cases are prescription or the IHE integration guide.</td>
+        <td><a href="https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2020.01/FHIR_VitalSigns" target="_blank">MedMij Vital Signs</a></td>
+    </tr>
+</table>
+
+### Creating guides
+
+The information below show the topics that would generally be expected to be part of an implementation guide. Note that the relevance of the parts may depend on the scope of the guide.
+
+#### About the Implementation Guide
+
+- A general introduction.
+- How to use the guide, and/or indication of the scope.
+- Relevant contact information.
+
+#### Use Case(s)
+
+Description of the use case(s):
+
+- Overview of systems and architecture.
+- An overview of the actors involved, with for example:
+    - Scenarios.
+    - Triggers/reasons (interaction diagrams, sequence diagrams etc.).
+    - Pre and post conditions.
+- Business rules, policy (technology independent), for example:
+    - There has to be a diabetic control document every 3 months.
+    - Systems must have a consent on file for the patient to be allowed to exchange patient data.
+
+#### Technical Implementation Guide
+
+Section of the IG containing technical details:
+
+- Per use case/transaction:
+    - Introduction and scope.
+    - Boundaries and relationships (used by, uses).
+    - Actors involved.
+- Sender and receiver responsibilities (functional requirements), for example:
+    - Upon POST new resource, sender SHALL return body with newly stored resource.
+- Examples of HTTP calls if using the RESTful exchange for FHIR
+    - Interactions
+    - Operations
+    - Search details
+- List of profiles
+- List of terminology resources used
+
+#### Profiles
+
+Description of all of the profiles defined for the scope of this guide, with:
+
+- Introduction
+- Canonical URL that identifies the profile
+- Rendering of the data structure itself
+- Explanation of any special handing or exceptions for data elements
+
+#### Other Conformance Resources
+
+Description of other FHIR artifacts that are used, plus a rendering if applicable. For example, ValueSets or CapabilityStatements.
+
+#### Examples 
+
+List of example instances, at least one per profile, showing what is expected of the data. When using multiple resource types, preferable examples that have references to each other.
+
+#### Appendix
+
+One or more appendices, if applicable.
+
+#### Help
+
+General guidance and where to go for feedback or questions.
+
+### Exercise 3: Create an IG
+
+#### Start of an Implementation Guide
+
+In this step we are going to setup an Implementation Guide using the Simplifier IG editor.
+
+- Open [Simplifier.net](https://simplifier.net/) in your browser, and log in.
+- In your project click on the "Guides" tab.
+- Click on "Create" to start a new guide.
+- Choose a relevant title for the guide, and click "Create".
+
+This will open the Simplifier IG editor. On the left, you can see the structure of your guide. In the middle is where you can edit your pages using Markdown. On the right, you can see a view of the page. You can click on the 'eye' icon in the top right to see what the guide will look like to users who visit it.
+
+- With `Home` selected on the left, click on the `+` sign just above it to add a new folder.
+- Call this folder `Profiles`.
+- Select the index page in the folder, and rename it to "Patient" or use the name you have given your profile (alternatively you can keep the index page as an introduction/overview page, and add extra pages for each of your profiles).
+- Add another folder for `Examples`, and add a page per category of example resources.
+
+If you want, you can rename or remove your pages with the other buttons above the page structure. It is also possible to reorder the pages by dragging them.
+
+- Preview your IG by clicking the `eye` button. This will open a new tab.
+- Click on the pages to navigate through your structure.
+
+**Your menu structure will show on the left hand side by default. If you do not like that, you can use the hamburger menu to open the settings and choose a different style.**
+
+#### Add some content
+
+The pages created in the previous steps are still quite empty, so we will now enter some details, such as rendering the profiles. Any changes will be saved automatically. The pages will appear in the project as text files.
+
+- Open a new tab with your project, and browse to your Patient profile.
+- Click on the button next to the canonical URL to copy it.
+- Go to the implementation guide editor, and select the profile page that was added in the previous step.
+- Delete any content that is on the page - by default a page starts with the page title.
+- Just above the editor window, find the `+ insert snippet` button - note that you may need to widen the editor window.
+- Choose to insert a `profile-page-starter`.
+- Change the URL behind the `subject` to your own canonical URL.
+- Do the same for the URL in the `<fql>` part.
+- To see the changes, find the refresh button on the right-hand side and click it.
+
+Repeat this for each profile you want to show in your guide. You can also add some text to describe the profile above or below the rendering, or on the index page.
+
+- Go to the Examples, and select the page for the Patient example.
+- Click on the "Intellisense" button above the editor window, and select "Files".
+- On the page, enter the command:
+    ```js
+    {{json:
+    ```
+- The intellisense should now show a list of choices, one of which should be your example Patient resource. Select that, and close the command with `}}`.
+- Refresh the view to see the changes.
+- If you want, you can change the resource format to 'xml', even if the original file was a JSON file.
+
+**Pro tip:** on the bottom left you can find a "Help" button. Clicking on any topic in the Help menu will show Markdown syntax in the editor window and the rendering in the view window. You can copy the Markdown and add it to your own pages.
+
