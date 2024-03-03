@@ -265,6 +265,10 @@ function createEHRColumnSidebar() {
                   text: "mCODE Implementation Guide",
                   link: "/docs/ehr/fhir/fhir-ig/02-fhir-mcode",
                 },
+                {
+                  text: "FHIR Profiling Training",
+                  link: "/docs/ehr/fhir/fhir-ig/03-fhir-profiling",
+                },
               ]
             },
             {

@@ -11,6 +11,10 @@ The HAPI FHIR server is running at local docker container with `http://localhost
 - data
   - synthea_sample_data_fhir_r4
 
+## Setup Hapi FHIR server locally
+- [Deploy with docker compose](https://github.com/hapifhir/hapi-fhir-jpaserver-starter?tab=readme-ov-file#deploy-with-docker-compose)
+- [Running via Docker Hub](https://github.com/hapifhir/hapi-fhir-jpaserver-starter?tab=readme-ov-file#running-via-docker-hub)
+
 
 ## Import Library
 

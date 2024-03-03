@@ -16,3 +16,7 @@
 |            |        | tutorials  |        |   product   |
 +------------+        +------------+        +-------------+
 ```
+
+## FHIR Implementation Guide Development Road Map
+
+![image](/fhir/01-fhir-resources/00-roadmap.png)

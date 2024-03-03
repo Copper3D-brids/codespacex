@@ -50,7 +50,8 @@ We can find a template of FHIR Implemetation Guide on [Simple IG Template GitHub
 
 ![image](/fhir/02-fhir-ig/05-fhir-eco-tools.png)
 
-  - [Simplifier FSH playground](https://simplifier.net/fsh): for create FHIR examples.
+  - [Simplifier FSH playground](https://simplifier.net/fsh): ...
+  - [Simplifier yamlgen playground](https://simplifier.net/yamlgen?scope=hl7.fhir.r4.core@4.0.1):for create FHIR examples.
   - [Simplifier Forge](https://simplifier.net/forge): for create FHIR Resource Profiles.
   - [Forge documentation](https://docs.fire.ly/projects/Forge/).
   - [Ontoserver Snapper](https://ontoserver.csiro.au/snapper/index.html?#/): for create Value Sets and FHIR Code System.

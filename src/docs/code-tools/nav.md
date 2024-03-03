@@ -78,6 +78,17 @@ import Card from '../../../.vitepress/theme/components/Card.vue';
 
 </div>
 
+### FHIR
+
+
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+<Card 
+  title="FHIR Profile Training Crouse"
+  desc="Need an account and password."
+  href="https://learning.courseware.nl/"
+/>
+</div>
+
 ### CSS Related
 
 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
