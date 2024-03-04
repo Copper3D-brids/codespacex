@@ -65,3 +65,29 @@ git remote set-url origin https://git-repo/new-repository.git
 ```sh
 git remote -v
 ```
+
+## Change local PC account
+
+- Check your current configuration
+
+```sh
+git config --list
+```
+
+- Update Global Configuration (Optional)
+
+  If you're switching to a new GitHub account permanently, you might want to update your global Git configuration with your new username and email. You can do this by using the following commands:
+
+```sh
+git config --global user.name Your_New_Username
+git config --global user.email yournewemail@example.com
+```
+
+- Change Repository Configuration
+
+  If you only want to change the GitHub account for a specific repository, navigate to the repository's directory in your terminal and use the following commands:
+
+```sh
+git config user.name Your_New_Username
+git config user.email yournewemail@example.com
+```
