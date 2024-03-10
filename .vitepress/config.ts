@@ -100,6 +100,11 @@ function createNav() {
               link: "/docs/ehr/server/architecture",
               activeMatch: "/docs/ehr",
             },
+            {
+              text: "📖 Literature Riview",
+              link: "/docs/ehr/literature-review/article-01",
+              activeMatch: "/docs/ehr",
+            },
           ],
         },
         {
@@ -252,6 +257,16 @@ function createEHRColumnSidebar() {
                   link: "/docs/ehr/fhir/hapi_fhir/tutorials/08-imagingstudy-ehr",
                 },
               ],
+            },
+            {
+              text: "Literature Riview",
+              link: "/docs/ehr/literature-review/article-01",
+              items: [
+                {
+                  text: "Experience in Developing an FHIR Medical Data Management Platform to Provide Clinical Decision Support",
+                  link: "/docs/ehr/literature-review/article-01",
+                },
+              ]
             },
             {
               text: "Hapi Implementation Guide",
