@@ -55,3 +55,13 @@ Using Forge to design a set of FHIR profile extensions. Using LOINC (Logical Obs
 - **Model Manager**: supports model management in the Knowledge Service (CRUD on models).
 
 ## Impressions
+
+In this article, they more use FHIR standard to transifer EHR data in a standard format (JSON) to microservies platform.
+
+- FHIR Specification
+    - Build own FHIR resources extensions based on FHIR R4 with URI (Unique resource identifier).
+    - Extend resources' fields based on LOINC and SNOMED CT.
+    - Almost 21 FHIR resoruces are used support input and output data.
+- FHIR Adapater
+    - A tool for convert FHIR data to platform services data.
+- TerminologyService: the storage and provision of medical terminology.
