@@ -288,6 +288,10 @@ function createEHRColumnSidebar() {
                   text: "FHIR Profiling Training",
                   link: "/docs/ehr/fhir/fhir-ig/03-fhir-profiling",
                 },
+                {
+                  text: "FHIR Certification Preparation",
+                  link: "/docs/ehr/fhir/fhir-ig/04-fhir-certification",
+                },
               ]
             },
             {
