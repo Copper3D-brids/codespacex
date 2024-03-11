@@ -266,6 +266,10 @@ function createEHRColumnSidebar() {
                   text: "Experience in Developing an FHIR Medical Data Management Platform to Provide Clinical Decision Support",
                   link: "/docs/ehr/literature-review/article-01",
                 },
+                {
+                  text: "SMART on FHIR: a standards-based, interoperable apps platform for electronic health records",
+                  link: "/docs/ehr/literature-review/article-02",
+                },
               ]
             },
             {
@@ -283,6 +287,10 @@ function createEHRColumnSidebar() {
                 {
                   text: "FHIR Profiling Training",
                   link: "/docs/ehr/fhir/fhir-ig/03-fhir-profiling",
+                },
+                {
+                  text: "FHIR Certification Preparation",
+                  link: "/docs/ehr/fhir/fhir-ig/04-fhir-certification",
                 },
               ]
             },
