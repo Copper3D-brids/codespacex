@@ -29,3 +29,12 @@
 - How are terminologies being used?
     - [Terminology module](https://hl7.org/fhir/R4/terminology-module.html#uses)
         - The terminology module provides an overview and guide to the FHIR resources, operations, coded data types and externally-defined standard and FHIR-defined terminologies that are used for representing and communicating coded, structured data in the FHIR core specification and profiles. Collectively, these capabilities are used to provide the terminology service functionality required for supporting the use of coded data in FHIR resources throughout the specification as described in the other modules.
+
+- How will the information be secured?
+    - [Security and Privacy Module](https://hl7.org/fhir/R4/secpriv-module.html#uses)
+        - **Authorization and Access Control**: A FHIR server should ensure that API access is allowed for authorized requests and denied for unauthorized requests.
+
+- When is information exchanged?
+    - [Workflow Module](https://hl7.org/fhir/R4/workflow-module.html)
+    - In each workflow steps, it is more based on how to use Definitions (ActivityDefinition, PlanDefinition) to design your tasks in a workflow. And it is quite about how you define the data input and export.
+    
