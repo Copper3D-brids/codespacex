@@ -129,7 +129,7 @@ function createNav() {
       items: [
         {
           text: "Azure",
-          link: "/docs/devops/azure/azure104/topic_1",
+          link: "/docs/devops/azure/azure104/knowledge_1",
           activeMatch: "/docs/devops",
         },
         {
@@ -362,6 +362,10 @@ function createDevOpsSidebar() {
           text: "Azure 104",
 
           items: [
+            {
+              text: "Knowledge One",
+              link: "/docs/devops/azure/azure104/knowledge_1",
+            },
             {
               text: "Topic One",
               link: "/docs/devops/azure/azure104/topic_1",
