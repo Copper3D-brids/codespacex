@@ -201,7 +201,7 @@ Now with these mock data, we can very easily create the `Patient` and `Observati
             }
         ]
      ```
-    - Update reference to `Practitioner`
+    - Update reference to `Practitioner` via `Patient` **generalPractitioner** field
     ```py
         researcher = await search_single_resource(client, 
                                                   identifier="sparc-practitioner-yyds-001", 
@@ -218,7 +218,7 @@ Now with these mock data, we can very easily create the `Patient` and `Observati
     ```
 - Create `Observation` resources for storing `primary measurements` 
     - See code in `T-03 observation-resource` for how to create a Observation resource
-    - Add `Patient` reference to Observation
+    - Add `Patient` reference to Observation via `Observation` **subject** field
 
     ```py
     patients = await search_resource(client, patient_identifier, 'Patient')
@@ -312,6 +312,12 @@ When researcher execute the workflow, it needs to triggle fhir server to generat
 
 ### Store workflow process
 
+- As for store workflow process for `Task` resource, we also need to consider which fields should be used for reference
+- Key fields for references:
+    - `focus` - **workflow: PlanDefinition**
+    - `owner` - **researcher: Practitioner**
+    - `requester` - **patient: Patient**
+
 ```py
 workflows = await search_resource(client, identifier=workflow_id, resource='PlanDefinition')
 practitioners = await search_resource(client, identifier=practitioner_id, resource='Practitioner')
@@ -369,9 +375,13 @@ for component in result['component']:
 
 ### Create a `Composition`
 
-We also need to create a `Composition` resource to manage the results of the specific `Task` (workflow).
+After we saved the results into FHIR Obseravtion resources, We also need to create a `Composition` resource to manage the results of the specific `Task` (workflow).
 Which means all result Observation resources should ref to this Composition resource.
 And this Composition resource should refer to `Task` and `Patient`.
+
+- Key references in `Composition` resource
+    - `subject`: **workflow process: Task**
+    - `author`: **patient: Patient**
 
 ```py
 workflow_processes = await search_resource(client, identifier=workflow_process_id, resource='Task')
