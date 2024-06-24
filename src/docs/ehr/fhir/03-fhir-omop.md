@@ -65,3 +65,5 @@
 ### Relevant study:
 
 - Data infrastructures for AI in medical imaging: a report on the experiences of five EU projects [[4]](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10164664/).
+
+- [All of Us Research Hub - OMOP](https://www.researchallofus.org/data-tools/methods/)
