@@ -100,6 +100,48 @@ import Card from '../../../.vitepress/theme/components/Card.vue';
 />
 
 <Card 
+  title="Fancy Border Radius"
+  desc="Border editor." 
+  href="https://9elements.github.io/fancy-border-radius/" 
+/>
+
+<Card 
+  title="Fancy Shadow"
+  desc="Shadow editor." 
+  href="https://neumorphism.io/#e0e0e0" 
+/>
+
+<Card 
+  title="My color space"
+  desc="Never waste Hours on finding the perfect Color Palette again." 
+  href="https://mycolor.space/" 
+/>
+
+<Card 
+  title="Multicolor Gradients"
+  desc="Pure CSS Code, JPG Download, And Free!" 
+  href="https://codioful.com/" 
+/>
+
+<Card 
+  title="UI Gradients"
+  desc="UI gradient background, not free" 
+  href="https://uigradients.com/#Aubergine" 
+/>
+
+<Card 
+  title="CSS Gradients"
+  desc="css gradient background" 
+  href="https://cssgradient.io/" 
+/>
+
+<Card 
+  title="CSS Animition"
+  desc="generate css animation" 
+  href="https://animista.net/" 
+/>
+
+<Card 
   title="Free gradient css3 styles"
   desc="A collection of 180 free linear gradient websites." 
   href="http://color.oulu.me/" 
