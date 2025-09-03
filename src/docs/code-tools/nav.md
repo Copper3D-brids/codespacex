@@ -94,6 +94,12 @@ import Card from '../../../.vitepress/theme/components/Card.vue';
 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 
 <Card 
+  title="Fancy NZ Animal Color"
+  desc="Extracting distinct colours characteristic of these birds"
+  href="https://g-thomson.github.io/Manu/"
+/>
+
+<Card 
   title="Element Theme online"
   desc="Customise theme on the website." 
   href="https://element.eleme.cn/#/zh-CN/theme" 
