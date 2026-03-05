@@ -58,6 +58,7 @@ export default {
       "/docs/devops/": createDevOpsSidebar(),
       // Copper3d
       "/docs/copper3d/": createCopper3dSidebar(),
+      "/docs/vue-plugin/": createVuePluginSidebar(),
       // // 面试
       // "/docs/interview/": createInterviewSidebar(),
       // // 随笔
@@ -157,6 +158,16 @@ function createNav() {
           text: "Issues",
           link: "/docs/copper3d/issues",
           activeMatch: "/docs/copper3d",
+        },
+      ],
+    },
+    {
+      text: "Vue Plugin",
+      items: [
+        {
+          text: "UMD Plugin Build Guide",
+          link: "/docs/vue-plugin/umd-plugin-build-guide",
+          activeMatch: "/docs/vue-plugin",
         },
       ],
     },
@@ -395,6 +406,24 @@ function createCopper3dSidebar() {
       text: "Copper3d",
       collapsed: false,
       items: [{ text: "📚 Issues", link: "/docs/copper3d/issues" }],
+    },
+  ];
+}
+
+/**
+ * @description Vue Plugin sidebar
+ */
+function createVuePluginSidebar() {
+  return [
+    {
+      text: "Vue Plugin",
+      collapsed: false,
+      items: [
+        {
+          text: "UMD Plugin Build Guide",
+          link: "/docs/vue-plugin/umd-plugin-build-guide",
+        },
+      ],
     },
   ];
 }
