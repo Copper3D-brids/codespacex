@@ -423,6 +423,10 @@ function createVuePluginSidebar() {
           text: "UMD Plugin Build Guide",
           link: "/docs/vue-plugin/umd-plugin-build-guide",
         },
+        {
+          text: "Plugin API Gateway Guide",
+          link: "/docs/vue-plugin/plugin-api-gateway-guide",
+        },
       ],
     },
   ];
