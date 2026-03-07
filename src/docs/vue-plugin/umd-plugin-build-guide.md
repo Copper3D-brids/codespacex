@@ -157,6 +157,19 @@ rollupOptions: {
 
 因此，Vite UMD 构建时移除了这些包，规定：**宿主是谁，谁负责在 window 上提供这几个框架**。
 
+由于 `VolView` 源码中会有类似 `import { useTheme } from 'vuetify'` 的解构语法，为了使得 UMD 构建产出正确的引用并防止破坏 Vite 的开发环境，我们在打包侧使用了自定义 Vite 插件 `replaceNamedImportsFromGlobals`：
+
+```typescript
+// VolView/vite.config.ts 里面配置对应的命名空间
+replaceNamedImportsFromGlobals({
+  pinia: { globalName: 'Pinia', symbols: ['defineStore', 'storeToRefs', 'createPinia', 'getActivePinia'] },
+  vuetify: { globalName: 'Vuetify', symbols: ['useTheme', 'useDisplay'] },
+  'vue-toastification': { globalName: 'VueToastification', symbols: ['useToast', 'TYPE'] },
+})
+```
+
+这段逻辑会在构建时，强行把源码内的 `import { useToast } from 'vue-toastification'` 替换为 `const useToast = window['VueToastification'].useToast;`。
+
 #### 宿主方 (`main-app/src/main.ts`) 的正确挂载姿势
 所以在你自己的主工程里，在调用任何 VolView 组件之前，必须显式地把当前运行环境的对应底层依赖“塞给” window，充当打孔好的“连接点”：
 
@@ -165,22 +178,25 @@ import * as Vue from 'vue'
 import { createPinia, defineStore, storeToRefs, getActivePinia } from 'pinia'
 import vuetify from './plugin/vuetify';
 import { useTheme, useDisplay } from "vuetify";
+import Toast, { createToastInterface, useToast, TYPE, POSITION } from 'vue-toastification';
+import 'vue-toastification/dist/index.css';
 
-// 给 VolView UMD 暴露 Vue 运行时框架
+// 最佳实践：避免全局命名空间污染 (Global Namespace Pollution)
+// 宿主方应当按照依赖包的模块名称，把方法聚合在一个单独的对象下挂载到 window，
+// 这样 Rollup 打包 UMD 时（通过 output.globals 映射）以及 Vite 开发环境才能够正确地找到它们，
+// 而不会在未来与其他插件暴露的顶级同名变量（诸如 TYPE, useToast）发生致密冲突。
+
 ;(window as any).Vue = Vue;
+;(window as any).Pinia = { createPinia, defineStore, storeToRefs, getActivePinia };
 
-// 给 VolView UMD 暴露响应式的 Pinia 实例调度器
-// 为什么连 defineStore 也要挂载？因为 Vite 打包时虽然把 pinia 指向了 window.Pinia，
-// 但在有的深层 Chunk 里面它会 destructure (解构) 类似 import { defineStore } from 'pinia'，这就需要我们在 window 上摊平这些方法。
-;(window as any).createPinia = createPinia;
-;(window as any).getActivePinia = getActivePinia;
-;(window as any).defineStore = defineStore;
-;(window as any).storeToRefs = storeToRefs;
+// 对于那些原本就是导出一个大对象/实例的库，我们可以用 Object.assign 挂载额外的解构方法
+;(window as any).Vuetify = Object.assign(vuetify, { useTheme, useDisplay });
 
-// 暴露 Vuetify 组件库的主题配置
-;(window as any).Vuetify = vuetify;
-;(window as any).useTheme = useTheme;
-;(window as any).useDisplay = useDisplay;
+// 对于含有大量 named exports 的库，必须显式聚合挂载，防止被宿主的 Vite tree-shaking 丢掉
+;(window as any).VueToastification = { default: Toast, createToastInterface, useToast, TYPE, POSITION };
+
+// 最后确保在主工程 Vue App 实例上挂载对应插件，以便在主应用内生效
+// createApp(App).use(vuetify).use(pinia).use(Toast).mount('#app')
 ```
 
 最后，确保在 HTML 或者其他入口加载那个 UMD Js，它顺着这几个全局变量一摸，就能完美地在你的 `main-app` 原有生命周期中苏醒过来。
@@ -196,3 +212,117 @@ import { useTheme, useDisplay } from "vuetify";
    - 如果用 **Vite**：按照上文配置 `experimental.renderBuiltUrl`。
    - 如果用 **Webpack**：在入口顶部第一行设置魔法变量 `__webpack_public_path__ = window.__MY_APP_BASE__`。
 3. **消除硬编码**：永远不要在源码中写死相对路径（例如 `new Worker('/assets/xxx.js')`），如果有硬编码要改为 `new Worker(window.__MY_APP_BASE__ + 'assets/xxx.js')`。
+
+---
+
+## ⚠️ 常见 Bug：MinIO 部署时 window 全局变量未就绪
+
+### 问题描述
+
+当 UMD 插件上传到 MinIO 后，宿主应用（main-app）加载时可能出现以下错误：
+
+```
+Uncaught TypeError: Cannot read properties of undefined (reading 'defineStore')
+Uncaught TypeError: Cannot read properties of undefined (reading 'TYPE')
+Uncaught TypeError: Cannot read properties of undefined (reading 'getActivePinia')
+Uncaught TypeError: Cannot read properties of undefined (reading 'on')
+```
+
+### 根本原因
+
+`vite-plugin-replace-imports.ts` 最初使用的是简单的即时赋值：
+
+```typescript
+// ❌ 错误：在模块顶层立即执行，此时 window.Pinia 可能还未注入
+const defineStore = window['Pinia'].defineStore;
+```
+
+UMD 模块被解析时，所有顶层代码都**立刻同步执行**。但在 MinIO 异步加载场景下，宿主 `main-app` 对 `window.Pinia` 等变量的注入可能在 UMD 解析之后才发生，从而导致 `undefined` 报错。
+
+### 修复：使用 Proxy 延迟访问
+
+将所有全局变量的访问改为惰性求值的 Proxy，只在实际**调用时**才读取 `window.Pinia`：
+
+```typescript
+// ✅ 正确：只有调用 defineStore('id', ...) 时才访问 window.Pinia
+const defineStore = new Proxy(function(){}, {
+  apply(_t, _thisArg, args) {
+    if (!window['Pinia'] || !window['Pinia'].defineStore) return function(){ return {}; };
+    // 对 defineStore 的返回值（useStore 函数）也做双层代理
+    let storeFn;
+    return new Proxy(function(){}, {
+      apply(_t2, _thisArg2, args2) {
+        if (!storeFn) storeFn = window['Pinia'].defineStore.apply(_thisArg, args);
+        return storeFn.apply(_thisArg2, args2);
+      },
+      get(_t2, prop2) {
+        if (!storeFn) storeFn = window['Pinia'].defineStore.apply(_thisArg, args);
+        return storeFn[prop2];
+      }
+    });
+  },
+  get(_t, prop) {
+    return window['Pinia'] && window['Pinia'].defineStore ? window['Pinia'].defineStore[prop] : undefined;
+  }
+});
+```
+
+对于 `TYPE` 这类**纯枚举对象**（非函数），直接硬编码为静态字典，彻底避免对 window 的依赖：
+
+```typescript
+// ✅ 正确：TYPE 是枚举，直接内联，不需要访问 window
+const TYPE = { SUCCESS: "success", ERROR: "error", DEFAULT: "default", INFO: "info", WARNING: "warning" };
+```
+
+这两个修复均已应用到：
+- `VolView/vite-plugin-replace-imports.ts`
+- `medical-image-annotator-test/annotator-frontend/vite-plugin-replace-imports.ts`
+
+---
+
+## ⚠️ 常见 Bug：`build_tool.py` 正则破坏 `vite.config.ts`
+
+### 问题描述
+
+通过后端 Python `build_tool.py` 构建的插件产物（上传到 MinIO 后）报错：
+```
+Uncaught TypeError: Cannot read properties of undefined (reading 'on')
+```
+而直接运行 `yarn build:plugin` 的本地产物完全正常。
+
+### 根本原因
+
+`build_tool.py` 的 `_replace_vite_build_config()` 方法使用了宽泛的正则：
+
+```python
+# ❌ 错误：匹配所有含 name: 的行，包括 globalName!
+re.compile(r'name:\s*["\']([^"\']*)["\']', re.IGNORECASE)
+```
+
+这会将 `vite.config.ts` 中 `replaceNamedImportsFromGlobals` 的配置：
+```typescript
+pinia: { globalName: 'Pinia', symbols: [...] },      // name 字段被误替换!
+vuetify: { globalName: 'Vuetify', symbols: [...] },  // name 字段被误替换!
+```
+全部改写为：
+```typescript
+pinia: { globalName: 'VolView_abc123', symbols: [...] },  // ← 错误!
+```
+因 TypeScript 区分大小写，`config.globalName`（大写 N）读不到 `globalname`（小写 n），返回 `undefined`，最终生成 `window[undefined]` 即 `window.undefined`，访问其属性必然报错。
+
+### 修复：精确只替换 `lib.name`
+
+```python
+# ✅ 正确：只替换 lib: { ... } 块内的 name 字段
+lib_block_pattern = re.compile(r'(lib\s*:\s*\{)(.*?)((?=\}\s*,)|\})', re.DOTALL)
+name_in_lib_pattern = re.compile(r'(name\s*:\s*)["\']([^"\']*)["\']')
+
+def lib_replacer(m):
+    body = name_in_lib_pattern.sub(lambda nm: f"{nm.group(1)}'{new_name}'", m.group(2), count=1)
+    return m.group(1) + body + m.group(3)
+
+content = lib_block_pattern.sub(lib_replacer, content, count=1)
+```
+
+此修复已应用到 `backend/app/builder/build_tool.py`。
+
